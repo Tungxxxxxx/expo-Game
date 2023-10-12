@@ -2,18 +2,24 @@ import {
   Text,
   View,
   StyleSheet,
-  Image,
   TextInput,
-  Button,
   ImageBackground,
   SafeAreaView,
   TouchableOpacity,
   Alert,
   ActivityIndicator,
+  Image,
 } from 'react-native';
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import { Users } from '../model/user';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+// import FontAwesome from 'react-native-vector-icons/FontAwesome';
+// import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+// import { Icon } from 'react-native-elements';
+import { Button } from '@rneui/themed';
+import { Input } from '@rneui/base';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { CheckBox } from 'react-native-elements';
+
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -72,138 +78,151 @@ class Login extends React.Component {
   render() {
     const { username, pass } = this.state;
     return (
-      // <SafeAreaView>
-      <ImageBackground source={require('../assets/images/41d02f4e4b5585bdfb2fca209436c301.jpg')} style={styles.bgImage}>
-        <View style={styles.container}>
-          <View style={styles.form}>
-            {/* <Text style={styles.headerText}> Chơi game hay tiền về ngay</Text> */}
-            {/* <Image style={styles.headImg} source={require('../assets/images/VIP.png')}></Image> */}
-            <View style={styles.loading}>
-              {this.state.isLoading && <ActivityIndicator color={'orange'} size="large" />}
-            </View>
-
-            <TextInput
-              style={styles.txtUser}
-              value={username}
-              placeholder="Tài khoản"
-              onChangeText={(val) => {
-                this.handleChangeUsername(val);
-              }}
-            />
-            <View style={styles.inputPass}>
-              <TextInput
-                style={styles.txtPass}
-                placeholder="Mật khẩu"
-                value={pass}
-                onChangeText={(val) => {
-                  this.handleChangePass(val);
-                }}
-              />
-              <FontAwesome style={styles.eyeIcon} name="eye" size={16} color="greygit" />
-            </View>
-            <TouchableOpacity
-              style={styles.butSignIn}
-              onPress={() => this.handleLogin(username, pass)} // Khi nhấn, gọi hàm handleLogin
-            >
-              <Text style={styles.buttonText}>Đăng nhập</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.butSignUp}>
-              <Text style={styles.buttonText}>Chưa có tài khoản</Text>
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Text style={styles.forgetPassLink}>Quên mật khẩu</Text>
-            </TouchableOpacity>
-            {/* <Text style={styles.headerText}>Nạp rút nhanh chóng</Text> */}
-          </View>
+      <>
+        <View style={styles.headImg}>
+          <Image
+            style={{ height: '90%', margin: 0, resizeMode: 'contain' }}
+            source={require('../assets/images/suvip-removebg-preview.png')}
+          />
         </View>
-      </ImageBackground>
-      // </SafeAreaView>
+
+        <View style={styles.logoContainer}>
+          <Image style={{ resizeMode: 'contain' }} source={require('../assets/images/VIP-removebg-preview.png')} />
+        </View>
+        <View style={{ justifyContent: 'center' }}>
+          <Input placeholder="Tài khoản" leftIcon={<Icon name="account-outline" size={20} color={'#F1AF00'} />} />
+          <Input placeholder="Mật khẩu" leftIcon={<Icon name="lock" size={20} color={'#F1AF00'} />} />
+          <View style={styles.signIn}>
+            <Button title={'Đăng nhập'} buttonStyle={styles.butSignIn} />
+            <Icon name="fingerprint" style={{ flex: 1 }} color={'#F1AF00'} size={50} />
+          </View>
+          <View style={styles.signUp}>
+            <Button title={'Chưa có tài khoản'} buttonStyle={styles.butSignUp} />
+          </View>
+          <Text>Quên mật khẩu</Text>
+        </View>
+      </>
     );
   }
 }
 const styles = StyleSheet.create({
-  bgImage: {
-    flex: 1,
-    resizeMode: 'cover',
-    borderRadius: 10,
-    overflow: 'hidden',
-    // height: '70%',
-  },
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.6)',
-  },
-  loading: { zIndex: 999, position: 'absolute', flex: 1, justifyContent: 'center', alignItems: 'center' },
-  form: {
-    alignItems: 'center',
-    padding: 20,
-    verticalAlign: 'center',
-  },
-  inputPass: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  eyeIcon: { left: -10 },
   headImg: {
-    width: 200,
+    height: '30%',
   },
-  headerText: {
-    // fontFamily: 'Roboto-Italic',
-    color: '#fff',
-    fontSize: 22,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginTop: 80,
-    marginBottom: 80,
+  // logoContainer: {
+  //   flex: 1,
+  //   alignItems: 'center',
+  //   height: '25%',
+  // },
+  // checkboxContainer: {
+  //   flex: 1,
+  //   flexDirection: 'row',
+  //   justifyContent: 'center',
+  //   // height: 20,
+  //   backgroundColor: '#367517',
+  // },
+  signIn: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    padding: 0,
+    marginTop: 0,
+    marginBottom: 0,
   },
-  txtUser: {
-    marginTop: 10,
-    width: 300,
-    height: 40,
-    backgroundColor: '#fff',
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    color: 'black',
+  signUp: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    height: 50,
+    padding: 0,
+    marginTop: 0,
+    marginBottom: 0,
   },
-  txtPass: {
-    marginTop: 10,
-    width: 300,
-    height: 40,
-    backgroundColor: '#fff',
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    color: 'black',
-  },
+  // container: {
+  //   position: 'absolute',
+  //   flex: 1,
+  //   borderTopLeftRadius: 20,
+  //   borderTopRightRadius: 20,
+  //   borderBottomRightRadius: 0,
+  //   borderBottomLeftRadius: 0,
+  //   top: '25%',
+  //   bottom: 0,
+  //   width: '100%',
+  //   backgroundColor: '#367517',
+  //   justifyContent: 'center',
+  //   // alignItems: 'center',
+  // },
+  // loading: { zIndex: 999, position: 'absolute', flex: 1, justifyContent: 'center', alignItems: 'center' },
+  // form: {
+  //   alignItems: 'center',
+  //   padding: 20,
+  //   verticalAlign: 'center',
+  // },
+  // inputPass: {
+  //   flexDirection: 'row',
+  //   alignItems: 'center',
+  // },
+  // eyeIcon: { left: -10 },
+  // headImg: {
+  //   width: 200,
+  // },
+  // headerText: {
+  //   color: '#fff',
+  //   fontSize: 22,
+  //   fontWeight: 'bold',
+  //   textAlign: 'center',
+  //   marginTop: 80,
+  //   marginBottom: 80,
+  // },
+  // txtUser: {
+  //   marginTop: 10,
+  //   width: 300,
+  //   height: 40,
+  //   backgroundColor: '#fff',
+  //   borderRadius: 5,
+  //   paddingHorizontal: 10,
+  //   color: 'black',
+  // },
+  // txtPass: {
+  //   marginTop: 10,
+  //   width: 300,
+  //   height: 40,
+  //   backgroundColor: '#fff',
+  //   borderRadius: 5,
+  //   paddingHorizontal: 10,
+  //   color: 'black',
+  // },
   butSignIn: {
-    marginTop: 10,
-    width: 200,
-    height: 40,
-    backgroundColor: 'orange',
-    borderRadius: 5,
+    flex: 3,
+    backgroundColor: '#F1AF00',
+    borderRadius: 30,
     textAlign: 'center',
-    justifyContent: 'center',
+    shadowColor: 'black', // Màu bóng
+    shadowOffset: { width: 10, height: 10 }, // Độ dịch chuyển của bóng
+    shadowOpacity: 0.5, // Độ trong suốt của bóng (0 - 1)
+    shadowRadius: 3, // Độ cong của bóng
+    elevation: 3, // Cho Android, tương tự shadowRadius
   },
-  butSignUp: {
-    textAlign: 'center',
-    marginTop: 10,
-    width: 200,
-    height: 40,
-    backgroundColor: 'orange',
-    borderRadius: 5,
-    justifyContent: 'center',
-  },
-  buttonText: {
-    color: '#000',
-    fontSize: 16,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  forgetPassLink: {
-    color: '#fff',
-    textAlign: 'left',
-    marginTop: 10,
-  },
+  // butSignUp: {
+  //   textAlign: 'center',
+  //   width: 200,
+  //   height: 40,
+  //   backgroundColor: '#F1AF00',
+  //   borderRadius: 5,
+  //   shadowColor: 'black', // Màu bóng
+  //   shadowOffset: { width: 10, height: 10 }, // Độ dịch chuyển của bóng
+  //   shadowOpacity: 0.5, // Độ trong suốt của bóng (0 - 1)
+  //   shadowRadius: 3, // Độ cong của bóng
+  //   elevation: 3, // Cho Android, tương tự shadowRadius
+  // },
+  // buttonText: {
+  //   color: '#000',
+  //   fontSize: 16,
+  //   fontWeight: 'bold',
+  //   textAlign: 'center',
+  // },
+  // forgetPassLink: {
+  //   color: '#fff',
+  //   textAlign: 'left',
+  //   marginTop: 10,
+  // },
 });
 export default Login;
