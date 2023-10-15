@@ -35,3 +35,5 @@ npm install @rneui/themed @rneui/base
 
 import { Icon } from 'react-native-elements';
 https://fonts.google.com/icons?selected=Material+Icons:person:
+npm create tamagui@latest
+Icon: pictogrammers.com
