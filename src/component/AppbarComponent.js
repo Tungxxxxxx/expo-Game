@@ -19,7 +19,7 @@ class AppbarComponent extends React.Component {
       },
     };
     const { avatar } = this.props.userLogin;
-    console.log('>>>> check props Main=>', this.props);
+    // console.log('>>>> check props Main=>', this.props);
     return (
       <PaperProvider theme={theme}>
         <Appbar.Header

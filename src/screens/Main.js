@@ -28,10 +28,10 @@ class Main extends React.Component {
       isLoading: false,
       page: 'LOG_IN',
       bgHeader: [
-        require('../assets/images/tx1.jpg'),
-        require('../assets/images/tx2.jpg'),
-        require('../assets/images/tx3.jpg'),
-        require('../assets/images/tx4.jpeg'),
+        require('../assets/images/banners/online-shopping-on-mobile-phone.jpg'),
+        // require('../assets/images/tx2.jpg'),
+        // require('../assets/images/tx3.jpg'),
+        // require('../assets/images/tx4.jpeg'),
       ],
       currentIndex: 0,
     };

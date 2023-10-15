@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Icon } from '@rneui/themed';
 import GioHangScreen from './GioHangScreen';
 import LoaiHangScreen from './LoaiHangScreen';
-import HomeScreen from './homeScreen';
+import HomeScreen from './HomeScreen';
 const Tab = createBottomTabNavigator();
 export default function Home() {
   return (

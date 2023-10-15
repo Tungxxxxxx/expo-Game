@@ -40,6 +40,7 @@ const initStateUsers = {
 };
 
 const userReducer = (state = initStateUsers, action) => {
+  console.log('userReducer', state);
   return state;
 };
 
