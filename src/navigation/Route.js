@@ -3,7 +3,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Main from '../screens/Main';
 import Home from '../screens/Home';
-import LogoMain from '../component/MainComponent';
 
 const Stack = createStackNavigator();
 class Route extends React.Component {

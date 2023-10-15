@@ -23,7 +23,7 @@ const initStateUsers = {
       name: 'Sở Lưu Hương',
       nickname: 'Hương Sở',
       money: 999999,
-      avatar: require('../../assets/images/tungpt.png'),
+      avatar: require('../../assets/images/tx2.jpg'),
     },
     {
       id: 3,
@@ -34,7 +34,7 @@ const initStateUsers = {
       name: 'Ái Tân Giác La',
       nickname: 'Huyền Diệp',
       money: 898999999,
-      avatar: require('../../assets/images/tungpt.png'),
+      avatar: require('../../assets/images/tx3.jpg'),
     },
   ],
 };

@@ -12,7 +12,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import React from 'react';
-import { Users } from '../model/user';
+// import { Users } from '../model/user';
 import { Backgrounds } from '../model/backgrounds';
 import Login from './Login';
 import Signup from './Signup';
@@ -81,8 +81,9 @@ class Main extends React.Component {
     this.setState({
       isLoading: true,
     });
+    const users = this.props.users;
     // Trả về mảng user thoả mãn
-    const foundUser = Users.filter((item) => {
+    const foundUser = users.filter((item) => {
       return item.username === username && item.password === pass;
     });
     // Alert.alert(foundUser);
