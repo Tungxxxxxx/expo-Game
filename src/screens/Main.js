@@ -112,13 +112,13 @@ class Main extends React.Component {
     this.props.SetLoginUser(foundUser[0]);
     const { navigation } = this.props;
     setTimeout(() => {
-      navigation.navigate('Home', { screen: 'HomeScreen', params: foundUser[0] });
-    }, 2000);
+      navigation.navigate('Home', { screen: 'HomeScreen' });
+    }, 0);
     setTimeout(() => {
       this.setState({
         isLoading: false,
       });
-    }, 3000);
+    }, 1000);
   };
   render() {
     const { page, bgHeader, currentIndex } = this.state;

@@ -1,6 +1,6 @@
 import { SafeAreaView, StyleSheet } from 'react-native';
 
-import Route from '../expo-Game/src/navigation/Route';
+import Route from './src/navigation/Route';
 import store from './src/store/store';
 import { Provider } from 'react-redux';
 import Temp from './src/screens/Temp';
