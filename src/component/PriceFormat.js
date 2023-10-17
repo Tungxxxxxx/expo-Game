@@ -7,7 +7,7 @@ class PriceFormat extends React.Component {
     return new Intl.NumberFormat('vn-VN', { style: 'decimal' }).format(price);
   };
   render() {
-    console.log('>>>Check price:', this.priceFormat(this.props.price));
+    // console.log('>>>Check price:', this.priceFormat(this.props.price));
     return <>{this.priceFormat(this.props.price)}</>;
   }
 }

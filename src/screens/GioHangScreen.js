@@ -11,7 +11,9 @@ class GioHangScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isChecked: false,
+      isCheckedAll: false,
+      checkedItems: [],
+      test: 'Chọn tất',
     };
   }
   sumPrices = (bags) => {
@@ -21,13 +23,32 @@ class GioHangScreen extends React.Component {
     });
     return sum;
   };
-  handlePressAllCheck = () => {
+  handlePressAllCheck = (bags) => {
+    const { isCheckedAll, checkedItems } = this.state;
+
+    const updatedCheckedItems = isCheckedAll ? [] : bags.map((item) => item.product.id);
+    const test = isCheckedAll ? 'Chọn hết' : 'Đã click All';
+    console.log('>>>Check updatedCheckedItems', updatedCheckedItems);
     this.setState({
-      isChecked: true,
+      isCheckedAll: !this.state.isCheckedAll,
+      checkedItems: updatedCheckedItems,
+      test: test,
+    });
+  };
+  handleChecked = (productId) => {
+    const checkedItemsUpdate = [...this.state.checkedItems];
+    if (checkedItemsUpdate.includes(productId)) {
+      checkedItemsUpdate.splice(checkedItemsUpdate.indexOf(productId), 1);
+    } else {
+      checkedItemsUpdate.push(productId);
+    }
+    this.setState({
+      checkedItems: checkedItemsUpdate,
     });
   };
   render() {
-    console.log('>>>Check props giỏ hàng:', this.props);
+    console.log('>>>Check checkedItem:', this.state.checkedItems.includes(1));
+    console.log('>>>Check checkedItems:', this.state.checkedItems);
     const { shoppingBagsUserLogin } = this.props;
     return (
       <View>
@@ -48,12 +69,12 @@ class GioHangScreen extends React.Component {
                   }}
                 >
                   <BouncyCheckbox
-                    isChecked={this.state.isChecked}
+                    isChecked={this.state.isCheckedAll}
                     onPress={() => {
-                      this.handlePressAllCheck();
+                      this.handlePressAllCheck(shoppingBagsUserLogin);
                     }}
                   />
-                  <Text>Chọn tất</Text>
+                  <Text>{this.state.test}</Text>
                 </View>
                 <View style={{ width: '33%', height: 30, alignItems: 'center', justifyContent: 'center' }}>
                   <Text style={{ color: 'red' }}>
@@ -75,10 +96,10 @@ class GioHangScreen extends React.Component {
                   </TouchableOpacity>
                 </View>
               </View>
-              <ScrollView marginBottom={80}>
-                <View style={{ width: '100%', flexDirection: 'column' }}>
+              <ScrollView>
+                <View style={{ width: '100%', flexDirection: 'column', marginBottom: 150 }}>
                   <FlatList
-                    pagingEnabled={false}
+                    // pagingEnabled={false}
                     scrollEnabled={false}
                     data={shoppingBagsUserLogin}
                     numColumns={1}
@@ -95,7 +116,11 @@ class GioHangScreen extends React.Component {
                         }}
                       >
                         <View style={{ width: 40, height: 80, justifyContent: 'center', alignItems: 'center' }}>
-                          <BouncyCheckbox isChecked={this.state.isChecked} />
+                          <BouncyCheckbox
+                            key={item.product.id}
+                            isChecked={this.state.checkedItems.includes(item.product.id) || false}
+                            onPress={() => this.handleChecked(item.product.id)}
+                          />
                         </View>
                         <View style={{ height: 80, width: 80, justifyContent: 'center', marginRight: 3 }}>
                           <Image

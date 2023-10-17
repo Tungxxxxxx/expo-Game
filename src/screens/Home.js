@@ -5,12 +5,13 @@ import { Icon } from '@rneui/themed';
 import GioHangScreen from './GioHangScreen';
 import LoaiHangScreen from './LoaiHangScreen';
 import HomeScreen from './HomeScreen';
+import IconWithBadge from '../component/IconWithBadge';
 const Tab = createBottomTabNavigator();
 export default function Home() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator initialRouteName="Products">
       <Tab.Screen
-        name="HomeScreen"
+        name="Products"
         component={HomeScreen}
         options={{
           tabBarIcon: () => <Icon name="home" color={'rgba(111, 202, 186, 1)'} size={24} />,
@@ -19,20 +20,31 @@ export default function Home() {
         }}
       />
       <Tab.Screen
-        name="LoaiHang"
+        name="Order"
         component={LoaiHangScreen}
         options={{
           tabBarIcon: () => <Icon name="shopping-cart" color={'rgba(111, 202, 186, 1)'} size={24} />,
-          title: 'Loại hàng',
+          title: 'Đơn hàng',
           headerShown: false,
         }}
       />
       <Tab.Screen
-        name="GioHang"
+        name="shoppingBag"
         component={GioHangScreen}
         options={{
-          tabBarIcon: () => <Icon name="shopping-bag" color={'rgba(111, 202, 186, 1)'} size={24} co />,
+          tabBarIcon: () => (
+            <IconWithBadge badgeCount={101} name={'shopping-bag'} color={'rgba(111, 202, 186, 1)'} size={24} />
+          ),
           title: 'Giỏ hàng',
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="Support"
+        component={GioHangScreen}
+        options={{
+          tabBarIcon: () => <Icon name="chat" color={'rgba(111, 202, 186, 1)'} size={24} />,
+          title: 'Hỗ trợ',
           headerShown: false,
         }}
       />
