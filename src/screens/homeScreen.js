@@ -6,6 +6,7 @@ import AppbarComponent from '../component/AppbarComponent';
 import { ScrollView } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
 import RatingComponent from '../component/RatingComponent';
+import PriceFormat from '../component/PriceFormat';
 class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -187,8 +188,10 @@ class HomeScreen extends React.Component {
 
                   <Text>{item.title}</Text>
                   <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
-                    <Text style={{ color: 'red' }}>{item.price} </Text>
-                    <Text style={{ color: 'red', fontStyle: 'italic' }}>-{item.saleOff}</Text>
+                    <Text style={{ color: 'red' }}>
+                      <PriceFormat price={item.price} />
+                    </Text>
+                    <Text style={{ color: 'red', fontStyle: 'italic' }}> -{item.saleOff}</Text>
                   </View>
                   <RatingComponent rating={item.rating} />
                   <TouchableOpacity
