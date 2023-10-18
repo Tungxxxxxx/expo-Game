@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import AppbarComponent from '../component/AppbarComponent';
-class LoaiHangScreen extends React.Component {
+class OrderScreen extends React.Component {
   render() {
     return (
       <View>
@@ -10,4 +10,4 @@ class LoaiHangScreen extends React.Component {
     );
   }
 }
-export default LoaiHangScreen;
+export default OrderScreen;

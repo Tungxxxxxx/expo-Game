@@ -1,15 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, FlatList, Alert, TouchableOpacity } from 'react-native';
-import { Button, Divider } from 'react-native-paper';
-import { Icon } from '@rneui/themed';
-import AppbarComponent from '../component/AppbarComponent';
-import { ScrollView } from 'react-native-gesture-handler';
+import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import RatingComponent from '../component/RatingComponent';
-import PriceFormat from '../component/PriceFormat';
 import Products from './Products';
 import ProductDetail from './ProductDetail';
-class HomeScreen extends React.Component {
+class ProductScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -92,4 +86,4 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({ type: 'ADD_PRODUCT_BAG', payload: { product: product, userLogin: userLogin } }),
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductScreen);

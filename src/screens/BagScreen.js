@@ -1,13 +1,12 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, SafeAreaView } from 'react-native';
-import { Button } from 'react-native-paper';
 import AppbarComponent from '../component/AppbarComponent';
 import { connect } from 'react-redux';
 import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import { Icon } from '@rneui/themed';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import PriceFormat from '../component/PriceFormat';
-class GioHangScreen extends React.Component {
+class BagScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -187,4 +186,4 @@ class GioHangScreen extends React.Component {
 const mapStateToProps = (state) => {
   return { shoppingBagsUserLogin: state.users.shoppingBagsUserLogin };
 };
-export default connect(mapStateToProps)(GioHangScreen);
+export default connect(mapStateToProps)(BagScreen);
