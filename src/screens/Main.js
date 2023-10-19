@@ -212,7 +212,7 @@ const mapDispatchToProps = (disPatch) => {
   //Trả về một đối tượng
   return {
     // dispatch 1 đối tượng có thuộc tính type: tên action và payload
-    SetLoginUser: (userLogin) => disPatch({ type: 'SET_USER_LOGIN', payload: userLogin }),
+    SetLoginUser: (userLogin) => disPatch({ type: 'SET_USER_LOGIN', payload: { userLogin: userLogin } }),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, SafeAreaView } from 'react-native';
-import AppbarComponent from '../component/AppbarComponent';
+import Appbar from '../component/Appbar';
 import { connect } from 'react-redux';
 import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import { Icon } from '@rneui/themed';
@@ -46,14 +46,10 @@ class BagScreen extends React.Component {
     });
   };
   render() {
-    console.log('>>>Check checkedItem:', this.state.checkedItems.includes(1));
-    console.log('>>>Check checkedItems:', this.state.checkedItems);
     const { shoppingBagsUserLogin } = this.props;
+    console.log(shoppingBagsUserLogin);
     return (
       <View>
-        <View style={{ zIndex: 0, borderWidth: 1 }}>
-          <AppbarComponent />
-        </View>
         <View style={{ width: '100%', marginTop: 65 }}>
           {shoppingBagsUserLogin && shoppingBagsUserLogin.length > 1 ? (
             <>

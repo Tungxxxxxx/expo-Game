@@ -15,6 +15,23 @@ const initStateUsers = {
       avatar: require('../../assets/images/tungpt.png'),
       shoppingBags: [],
       countProductInBag: 0,
+      alert: [
+        {
+          id: 1,
+          content: 'Đã thêm sản phẩm vào giỏ',
+          image: require('../../assets/images/products/sg-11134201-7rbkr-lm8hkd3uitspe3.jpg'),
+        },
+        {
+          id: 1,
+          content: 'Đã thêm sản phẩm vào giỏ',
+          image: require('../../assets/images/products/sg-11134201-7rbkr-lm8hkd3uitspe3.jpg'),
+        },
+        {
+          id: 1,
+          content: 'Đã thêm sản phẩm vào giỏ',
+          image: require('../../assets/images/products/sg-11134201-7rbkr-lm8hkd3uitspe3.jpg'),
+        },
+      ],
     },
     {
       id: 2,
@@ -53,15 +70,17 @@ function GetUsersAddedProduct(state, action) {
   //Tăng count mỗi lần add product vào giỏ
   usersCopy[findIndex].countProductInBag += 1;
   // Tìm product đã tồn tại chưa
+  console.log('>>>Check action', action.payload.product);
+
   const findProductIndex = shoppingBagsCopy.findIndex((item) => item.product.id === action.payload.product.id);
   if (findProductIndex !== -1) {
-    console.log('>>>Đã tồn tại');
-    console.log(JSON.stringify(shoppingBagsCopy[findProductIndex]));
+    // console.log(JSON.stringify(shoppingBagsCopy[findProductIndex]));
     shoppingBagsCopy[findProductIndex].qty = shoppingBagsCopy[findProductIndex].qty + 1;
   } else {
-    console.log('>>>chưa tồn tại');
+    // console.log('shoppingBagsCopy', shoppingBagsCopy);
     shoppingBagsCopy.push({ product: action.payload.product, qty: 1 });
   }
+
   // Set shoppingBags cho usersCopy
   usersCopy[findIndex].shoppingBags = shoppingBagsCopy;
   const shoppingBagsUserLogin = shoppingBagsCopy;

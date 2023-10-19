@@ -10,6 +10,12 @@ const initStateProduct = {
       avatar: require('../../assets/images/products/sg-11134201-7rbmf-ll3bwnklx35h9d.jpg'),
       images: [],
       saleOff: '15%',
+      description:
+        'Điện thoại Redmi K50 đã được ra mắt vào ngày 17/3/2022, đi kèm với chip Dimensity siêu mạnh, màn hình 2K siêu nét, hệ thống camera chất lượng, pin siêu khủng và sạc cực nhanh. Từ nhiều thông số kỹ thuật và tính năng hấp dẫn Xiaomi Redmi K50 trở thành mẫu điện thoại tầm trung bán chạy nhất tại MobileCity.',
+
+      views: 100,
+      shelled: 1000,
+      dateSubmitted: 1679228282,
     },
     {
       id: 2,
@@ -26,6 +32,11 @@ const initStateProduct = {
         { id: 5, path: require('../../assets/images/products/sg-11134201-7rbk0-ll0dl3ovngiw4a.jpg') },
       ],
       saleOff: '15%',
+      description:
+        'Điện thoại Redmi K50 đã được ra mắt vào ngày 17/3/2022, đi kèm với chip Dimensity siêu mạnh, màn hình 2K siêu nét, hệ thống camera chất lượng, pin siêu khủng và sạc cực nhanh. Từ nhiều thông số kỹ thuật và tính năng hấp dẫn Xiaomi Redmi K50 trở thành mẫu điện thoại tầm trung bán chạy nhất tại MobileCity.',
+      views: 111,
+      shelled: 333,
+      dateSubmitted: 16792228282,
     },
     {
       id: 3,
@@ -42,6 +53,9 @@ const initStateProduct = {
         { id: 5, path: require('../../assets/images/products/sg-11134201-7rbk0-ll0dl3ovngiw4a.jpg') },
       ],
       saleOff: '13%',
+      views: 1200,
+      shelled: 2123,
+      dateSubmitted: 1612128282,
     },
     {
       id: 4,
@@ -58,6 +72,11 @@ const initStateProduct = {
         { id: 5, path: require('../../assets/images/products/sg-11134201-7rbk0-ll0dl3ovngiw4a.jpg') },
       ],
       saleOff: '15%',
+      description:
+        'Điện thoại Redmi K50 đã được ra mắt vào ngày 17/3/2022, đi kèm với chip Dimensity siêu mạnh, màn hình 2K siêu nét, hệ thống camera chất lượng, pin siêu khủng và sạc cực nhanh. Từ nhiều thông số kỹ thuật và tính năng hấp dẫn Xiaomi Redmi K50 trở thành mẫu điện thoại tầm trung bán chạy nhất tại MobileCity.',
+      views: 99,
+      shelled: 453,
+      dateSubmitted: 1672228282,
     },
     {
       id: 5,
@@ -74,6 +93,11 @@ const initStateProduct = {
         { id: 5, path: require('../../assets/images/products/sg-11134201-7rbk0-ll0dl3ovngiw4a.jpg') },
       ],
       saleOff: '15%',
+      description:
+        'Điện thoại Redmi K50 đã được ra mắt vào ngày 17/3/2022, đi kèm với chip Dimensity siêu mạnh, màn hình 2K siêu nét, hệ thống camera chất lượng, pin siêu khủng và sạc cực nhanh. Từ nhiều thông số kỹ thuật và tính năng hấp dẫn Xiaomi Redmi K50 trở thành mẫu điện thoại tầm trung bán chạy nhất tại MobileCity.',
+      views: 34,
+      shelled: 21221,
+      dateSubmitted: 1621228282,
     },
     {
       id: 6,
@@ -90,6 +114,11 @@ const initStateProduct = {
         { id: 5, path: require('../../assets/images/products/sg-11134201-7rbk0-ll0dl3ovngiw4a.jpg') },
       ],
       saleOff: '15%',
+      description:
+        'Điện thoại Redmi K50 đã được ra mắt vào ngày 17/3/2022, đi kèm với chip Dimensity siêu mạnh, màn hình 2K siêu nét, hệ thống camera chất lượng, pin siêu khủng và sạc cực nhanh. Từ nhiều thông số kỹ thuật và tính năng hấp dẫn Xiaomi Redmi K50 trở thành mẫu điện thoại tầm trung bán chạy nhất tại MobileCity.',
+      views: 0,
+      shelled: 111,
+      dateSubmitted: 1672228282,
     },
     {
       id: 7,
@@ -106,6 +135,11 @@ const initStateProduct = {
         { id: 5, path: require('../../assets/images/products/sg-11134201-7rbk0-ll0dl3ovngiw4a.jpg') },
       ],
       saleOff: '15%',
+      description:
+        'Điện thoại Redmi K50 đã được ra mắt vào ngày 17/3/2022, đi kèm với chip Dimensity siêu mạnh, màn hình 2K siêu nét, hệ thống camera chất lượng, pin siêu khủng và sạc cực nhanh. Từ nhiều thông số kỹ thuật và tính năng hấp dẫn Xiaomi Redmi K50 trở thành mẫu điện thoại tầm trung bán chạy nhất tại MobileCity.',
+      views: 982,
+      shelled: 121,
+      dateSubmitted: 1679221182,
     },
     {
       id: 8,
@@ -122,6 +156,11 @@ const initStateProduct = {
         { id: 5, path: require('../../assets/images/products/sg-11134201-7rbk0-ll0dl3ovngiw4a.jpg') },
       ],
       saleOff: '15%',
+      description:
+        'Điện thoại Redmi K50 đã được ra mắt vào ngày 17/3/2022, đi kèm với chip Dimensity siêu mạnh, màn hình 2K siêu nét, hệ thống camera chất lượng, pin siêu khủng và sạc cực nhanh. Từ nhiều thông số kỹ thuật và tính năng hấp dẫn Xiaomi Redmi K50 trở thành mẫu điện thoại tầm trung bán chạy nhất tại MobileCity.',
+      views: 100,
+      shelled: 544,
+      dateSubmitted: 1679228282,
     },
     {
       id: 9,
@@ -138,6 +177,11 @@ const initStateProduct = {
         { id: 5, path: require('../../assets/images/products/sg-11134201-7rbk0-ll0dl3ovngiw4a.jpg') },
       ],
       saleOff: '15%',
+      description:
+        'Điện thoại Redmi K50 đã được ra mắt vào ngày 17/3/2022, đi kèm với chip Dimensity siêu mạnh, màn hình 2K siêu nét, hệ thống camera chất lượng, pin siêu khủng và sạc cực nhanh. Từ nhiều thông số kỹ thuật và tính năng hấp dẫn Xiaomi Redmi K50 trở thành mẫu điện thoại tầm trung bán chạy nhất tại MobileCity.',
+      views: 45,
+      shelled: 1212,
+      dateSubmitted: 1679228282,
     },
     {
       id: 10,
@@ -154,6 +198,11 @@ const initStateProduct = {
         { id: 5, path: require('../../assets/images/products/sg-11134201-7rbk0-ll0dl3ovngiw4a.jpg') },
       ],
       saleOff: '15%',
+      description:
+        'Điện thoại Redmi K50 đã được ra mắt vào ngày 17/3/2022, đi kèm với chip Dimensity siêu mạnh, màn hình 2K siêu nét, hệ thống camera chất lượng, pin siêu khủng và sạc cực nhanh. Từ nhiều thông số kỹ thuật và tính năng hấp dẫn Xiaomi Redmi K50 trở thành mẫu điện thoại tầm trung bán chạy nhất tại MobileCity.',
+      views: 21,
+      shelled: 11,
+      dateSubmitted: 1444228282,
     },
     {
       id: 11,
@@ -170,12 +219,58 @@ const initStateProduct = {
         { id: 5, path: require('../../assets/images/products/sg-11134201-7rbk0-ll0dl3ovngiw4a.jpg') },
       ],
       saleOff: '15%',
+      description:
+        'Điện thoại Redmi K50 đã được ra mắt vào ngày 17/3/2022, đi kèm với chip Dimensity siêu mạnh, màn hình 2K siêu nét, hệ thống camera chất lượng, pin siêu khủng và sạc cực nhanh. Từ nhiều thông số kỹ thuật và tính năng hấp dẫn Xiaomi Redmi K50 trở thành mẫu điện thoại tầm trung bán chạy nhất tại MobileCity.',
+      views: 89,
+      shelled: 11,
+      dateSubmitted: 1249228282,
     },
   ],
 };
+//Hàm tìm kiếm => lọc các product có giá trị tìm kiếm thỏa mãn
+function getProductsSearch(state, action) {
+  // state sẽ bị thay đổi, phải gán bằng initStateProduct
+  const products = [...initStateProduct.products];
+  const productsSearch = [...initStateProduct.products];
+  const searchVal = action.payload && action.payload.searchVal ? action.payload.searchVal : '';
+  if (searchVal === '') {
+    return products;
+  } else {
+    return productsSearch.filter((item) => item.title.toLowerCase().includes(searchVal.toLowerCase()));
+  }
+}
+//hàm logic các action tương ứng, lấy giá trị mảng đã tìm kiếm thỏa mãn
+function getProductsOrderBy(state, action) {
+  const products = getProductsSearch(state, action);
 
+  switch (action.type) {
+    case 'PHO_BIEN':
+      products.sort((a, b) => b.views - a.views);
+      return products;
+    case 'MOI_NHAT':
+      products.sort((a, b) => b.dateSubmitted - a.dateSubmitted);
+      return products;
+    case 'BAN_CHAY':
+      products.sort((a, b) => b.shelled - a.shelled);
+      return products;
+    case 'GIA_TANG':
+      products.sort((a, b) => a.price - b.price);
+      return products;
+    case 'GIA_GIAM':
+      products.sort((a, b) => b.price - a.price);
+      return products;
+    case 'SEARCH':
+      products.sort((a, b) => b.views - a.views);
+      return products;
+
+    default:
+      products.sort((a, b) => b.views - a.views);
+      return products;
+  }
+}
 const productReducer = (state = initStateProduct, action) => {
-  return state;
+  const products = getProductsOrderBy(state, action);
+  return { ...state, products: products };
 };
 
 export default productReducer;

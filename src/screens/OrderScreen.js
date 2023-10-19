@@ -1,13 +1,9 @@
 import React from 'react';
 import { View } from 'react-native';
-import AppbarComponent from '../component/AppbarComponent';
+import Appbar from '../component/Appbar';
 class OrderScreen extends React.Component {
   render() {
-    return (
-      <View>
-        <AppbarComponent />
-      </View>
-    );
+    return <View></View>;
   }
 }
 export default OrderScreen;

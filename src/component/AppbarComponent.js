@@ -15,7 +15,7 @@ class AppbarComponent extends React.Component {
       ...DefaultTheme,
       colors: {
         ...DefaultTheme.colors,
-        primary: '#1877F2', // Màu chính (dùng cho đường viền và nền)
+        primary: '', // Màu chính (dùng cho đường viền và nền)
       },
     };
     const { avatar } = this.props.userLogin;

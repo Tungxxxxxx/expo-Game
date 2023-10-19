@@ -17,7 +17,7 @@ const userLoginReducer = (state = initStateUserLogin, action) => {
   // payload là data gửi lên
   switch (action.type) {
     case 'SET_USER_LOGIN':
-      return { ...state, userLogin: action.payload };
+      return { ...state, userLogin: action.payload.userLogin };
     default:
       // Nếu ko có gì thì return state ban đầu
       return state;
