@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-class Alert extends React.Component {
+class NotificationScreen extends React.Component {
   render() {
     return (
       <View>
@@ -11,4 +11,4 @@ class Alert extends React.Component {
     );
   }
 }
-export default Alert;
+export default NotificationScreen;

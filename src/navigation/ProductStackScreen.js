@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import ProductScreen from '../screens/ProductScreen';
+import ProductScreen from '../screens/Home/ProductScreen';
 import ProductDetail from '../screens/ProductDetail';
 const ProductStack = createStackNavigator();
 class ProductStackScreen extends React.Component {

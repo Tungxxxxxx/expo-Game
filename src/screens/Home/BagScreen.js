@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, SafeAreaView } from 'react-native';
-import Appbar from '../component/Appbar';
 import { connect } from 'react-redux';
 import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import { Icon } from '@rneui/themed';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
-import PriceFormat from '../component/PriceFormat';
+import PriceFormat from '../../component/PriceFormat';
+import ProductScreen from './ProductScreen';
 class BagScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -51,7 +51,7 @@ class BagScreen extends React.Component {
     return (
       <View>
         <View style={{ width: '100%', marginTop: 65 }}>
-          {shoppingBagsUserLogin && shoppingBagsUserLogin.length > 1 ? (
+          {shoppingBagsUserLogin && shoppingBagsUserLogin.length > 0 ? (
             <>
               <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 5, alignItems: 'center' }}>
                 <View

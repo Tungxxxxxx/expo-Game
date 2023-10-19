@@ -5,10 +5,14 @@ import { Icon } from '@rneui/themed';
 import BagScreen from './BagScreen';
 import OrderScreen from './OrderScreen';
 import ProductScreen from './ProductScreen';
-import IconWithBadge from '../component/IconWithBadge';
+import IconWithBadge from '../../component/IconWithBadge';
 import React from 'react';
-import Appbar from '../component/Appbar';
-import ProductStackScreen from '../navigation/ProductStackScreen';
+import Appbar from '../../component/Appbar';
+import ProductStackScreen from '../../navigation/ProductStackScreen';
+import NotificationScreen from './NotificationScreen';
+import UserInfoScreen from './UserInfoScreen';
+import SupportScreen from './SupportScreen';
+import { Avatar } from 'react-native-paper';
 const Tab = createMaterialTopTabNavigator();
 class Home extends React.Component {
   constructor(props) {
@@ -25,6 +29,7 @@ class Home extends React.Component {
   };
 
   render() {
+    const { userLogin } = this.props;
     return (
       <>
         <Appbar handleSearchProduct={this.handleSearchProduct} searchVal={this.state.searchVal} />
@@ -53,7 +58,7 @@ class Home extends React.Component {
           <Tab.Screen
             name="Order"
             options={{
-              tabBarIcon: () => <Icon name="shopping-cart" color={'rgba(111, 202, 186, 1)'} size={24} />,
+              tabBarIcon: () => <Icon name="shopping-bag" color={'rgba(111, 202, 186, 1)'} size={24} />,
               title: '',
               headerShown: false,
             }}
@@ -66,7 +71,7 @@ class Home extends React.Component {
               tabBarIcon: () => (
                 <IconWithBadge
                   badgeCount={this.props.countPIB}
-                  name={'shopping-bag'}
+                  name={'shopping-cart'}
                   color={'rgba(111, 202, 186, 1)'}
                   size={24}
                 />
@@ -78,24 +83,7 @@ class Home extends React.Component {
             {() => <BagScreen />}
           </Tab.Screen>
           <Tab.Screen
-            name="User"
-            options={{
-              tabBarIcon: () => (
-                <IconWithBadge
-                  badgeCount={this.props.countPIB}
-                  name={'shopping-bag'}
-                  color={'rgba(111, 202, 186, 1)'}
-                  size={24}
-                />
-              ),
-              title: '',
-              headerShown: false,
-            }}
-          >
-            {() => <BagScreen />}
-          </Tab.Screen>
-          <Tab.Screen
-            name="alert"
+            name="notifications"
             options={{
               tabBarIcon: () => (
                 <IconWithBadge
@@ -109,17 +97,35 @@ class Home extends React.Component {
               headerShown: false,
             }}
           >
-            {() => <BagScreen />}
+            {() => <NotificationScreen />}
           </Tab.Screen>
           <Tab.Screen
             name="Support"
-            component={BagScreen}
             options={{
-              tabBarIcon: () => <Icon name="chat" color={'rgba(111, 202, 186, 1)'} size={24} />,
+              tabBarIcon: () => (
+                <IconWithBadge
+                  badgeCount={this.props.countPIB}
+                  name={'chat'}
+                  color={'rgba(111, 202, 186, 1)'}
+                  size={24}
+                />
+              ),
               title: '',
               headerShown: false,
             }}
-          />
+          >
+            {() => <SupportScreen />}
+          </Tab.Screen>
+          <Tab.Screen
+            name="User"
+            options={{
+              tabBarIcon: () => <Avatar.Image size={24} source={userLogin.avatar} />,
+              title: '',
+              headerShown: false,
+            }}
+          >
+            {() => <UserInfoScreen />}
+          </Tab.Screen>
         </Tab.Navigator>
       </>
     );
@@ -127,7 +133,7 @@ class Home extends React.Component {
 }
 // ghi dữ liệu từ state của redux vào props của component
 const mapStateToProps = (state) => {
-  return { countPIB: state.users.countPIB, users: state.users };
+  return { countPIB: state.users.countPIB, users: state.users, userLogin: state.userLogin.userLogin };
 };
 const mapDispatchToProps = (dispatch) => {
   return {

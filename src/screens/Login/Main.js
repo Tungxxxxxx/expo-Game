@@ -9,11 +9,10 @@ import {
   SafeAreaView,
   TouchableOpacity,
   Alert,
-  ActivityIndicator,
 } from 'react-native';
 import React from 'react';
 // import { Users } from '../model/user';
-import { Backgrounds } from '../model/backgrounds';
+import { Backgrounds } from '../../model/backgrounds';
 import Login from './Login';
 import Signup from './Signup';
 //import connect để kết nối redux
@@ -28,7 +27,7 @@ class Main extends React.Component {
       isLoading: false,
       page: 'LOG_IN',
       bgHeader: [
-        require('../assets/images/banners/online-shopping-on-mobile-phone.jpg'),
+        require('../../assets/images/banners/online-shopping-on-mobile-phone.jpg'),
         // require('../assets/images/tx2.jpg'),
         // require('../assets/images/tx3.jpg'),
         // require('../assets/images/tx4.jpeg'),

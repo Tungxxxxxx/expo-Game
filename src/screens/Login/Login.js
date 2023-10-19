@@ -4,7 +4,7 @@ import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { TextInput, Button } from 'react-native-paper';
 import { Icon } from '@rneui/themed';
 
-import Loading from '../component/Loading';
+import Loading from '../../component/Loading';
 import { Divider } from '@rneui/themed';
 class Login extends React.Component {
   constructor(props) {
@@ -118,9 +118,9 @@ class Login extends React.Component {
             paddingTop: 20,
           }}
         >
-          <Image style={{ width: 50, height: 50 }} source={require('../assets/images/facebook.png')} />
-          <Image style={{ width: 50, height: 50 }} source={require('../assets/images/GG.png')} />
-          <Image style={{ width: 50, height: 50 }} source={require('../assets/images/twitter.png')} />
+          <Image style={{ width: 50, height: 50 }} source={require('../../assets/images/facebook.png')} />
+          <Image style={{ width: 50, height: 50 }} source={require('../../assets/images/GG.png')} />
+          <Image style={{ width: 50, height: 50 }} source={require('../../assets/images/twitter.png')} />
         </View>
       </View>
     );

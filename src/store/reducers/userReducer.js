@@ -1,4 +1,4 @@
-import { Switch } from 'react-native-gesture-handler';
+import * as Constant from '../../common/Constant';
 
 //Danh sách user
 const initStateUsers = {
@@ -56,11 +56,11 @@ const initStateUsers = {
       nickname: 'Huyền Diệp',
       money: 898999999,
       avatar: require('../../assets/images/tx3.jpg'),
-      shoppingBags: [{ product: {}, qty: 0 }],
+      shoppingBags: [],
       countProductInBag: 0,
     },
   ],
-  shoppingBagsUserLogin: [{ product: {}, qty: 0 }],
+  shoppingBagsUserLogin: [],
 };
 function GetUsersAddedProduct(state, action) {
   const userLogin = action.payload.userLogin;
@@ -70,17 +70,15 @@ function GetUsersAddedProduct(state, action) {
   //Tăng count mỗi lần add product vào giỏ
   usersCopy[findIndex].countProductInBag += 1;
   // Tìm product đã tồn tại chưa
-  console.log('>>>Check action', action.payload.product);
-
   const findProductIndex = shoppingBagsCopy.findIndex((item) => item.product.id === action.payload.product.id);
   if (findProductIndex !== -1) {
-    // console.log(JSON.stringify(shoppingBagsCopy[findProductIndex]));
+    console.log('>>>Đã tồn tại');
+    console.log(JSON.stringify(shoppingBagsCopy[findProductIndex]));
     shoppingBagsCopy[findProductIndex].qty = shoppingBagsCopy[findProductIndex].qty + 1;
   } else {
-    // console.log('shoppingBagsCopy', shoppingBagsCopy);
+    console.log('>>>chưa tồn tại');
     shoppingBagsCopy.push({ product: action.payload.product, qty: 1 });
   }
-
   // Set shoppingBags cho usersCopy
   usersCopy[findIndex].shoppingBags = shoppingBagsCopy;
   const shoppingBagsUserLogin = shoppingBagsCopy;
@@ -92,10 +90,10 @@ function GetUsersAddedProduct(state, action) {
 }
 
 const userReducer = (state = initStateUsers, action) => {
-  if (action && action.payload && action.payload.userLogin) {
+  if (Constant.USER_ACTION.includes(action.type)) {
     const { usersAddedProduct, shoppingBagsUserLogin, countPIB } = GetUsersAddedProduct(state, action);
     switch (action.type) {
-      case 'ADD_PRODUCT_BAG':
+      case Constant.ADD_PRODUCT_BAG:
         return { ...state, users: usersAddedProduct, shoppingBagsUserLogin: shoppingBagsUserLogin, countPIB: countPIB };
       default:
         return state;

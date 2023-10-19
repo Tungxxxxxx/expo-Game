@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import Products from './Products';
-import ProductDetail from './ProductDetail';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import Products from '../Products';
+import ProductDetail from '../ProductDetail';
+import { createStackNavigator } from '@react-navigation/stack';
+const Stack = createStackNavigator();
 class ProductScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -29,10 +30,10 @@ class ProductScreen extends React.Component {
       page: 'PRODUCT',
     });
   };
-  // handleShowProductDetail= (){
-  //   const { navigation } = this.props;
-
-  // }
+  handleShowProductDetail = () => {
+    const { navigation } = this.props;
+    navigation.navigate('ProductDetail');
+  };
   handleProductDetail = (product) => {
     const { navigation } = this.props;
     navigation.navigate('ProductDetail', { product: product });
@@ -40,14 +41,27 @@ class ProductScreen extends React.Component {
   render() {
     const { page, productPressed } = this.state;
     return (
-      <View style={{}}>
-        <Products
-          searchVal={this.props.searchVal}
-          handleAddBag={this.handleAddBag}
-          handlePressProductImage={this.handlePressProductImage}
-          handleProductDetail={this.handleProductDetail}
-        />
-      </View>
+      <>
+        <View style={{}}>
+          <TouchableOpacity
+            onPress={() => {
+              this.handleShowProductDetail();
+            }}
+          >
+            <Text>sssssssssss</Text>
+          </TouchableOpacity>
+          <Products
+            searchVal={this.props.searchVal}
+            handleAddBag={this.handleAddBag}
+            handlePressProductImage={this.handlePressProductImage}
+            handleProductDetail={this.handleProductDetail}
+          />
+        </View>
+        <Stack.Navigator>
+          <Stack.Screen name="Products" component={ProductScreen} options={{ headerShown: false }} />
+          <Stack.Screen name="ProductDetail" component={ProductDetail} />
+        </Stack.Navigator>
+      </>
     );
   }
 }

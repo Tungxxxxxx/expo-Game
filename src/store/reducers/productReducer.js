@@ -1,3 +1,4 @@
+import * as Constant from '../../common/Constant';
 //Danh sách user
 const initStateProduct = {
   products: [
@@ -244,22 +245,22 @@ function getProductsOrderBy(state, action) {
   const products = getProductsSearch(state, action);
 
   switch (action.type) {
-    case 'PHO_BIEN':
+    case Constant.PHO_BIEN:
       products.sort((a, b) => b.views - a.views);
       return products;
-    case 'MOI_NHAT':
+    case Constant.MOI_NHAT:
       products.sort((a, b) => b.dateSubmitted - a.dateSubmitted);
       return products;
-    case 'BAN_CHAY':
+    case Constant.BAN_CHAY:
       products.sort((a, b) => b.shelled - a.shelled);
       return products;
-    case 'GIA_TANG':
+    case Constant.GIA_TANG:
       products.sort((a, b) => a.price - b.price);
       return products;
-    case 'GIA_GIAM':
+    case Constant.GIA_GIAM:
       products.sort((a, b) => b.price - a.price);
       return products;
-    case 'SEARCH':
+    case Constant.SEARCH:
       products.sort((a, b) => b.views - a.views);
       return products;
 
@@ -269,8 +270,12 @@ function getProductsOrderBy(state, action) {
   }
 }
 const productReducer = (state = initStateProduct, action) => {
-  const products = getProductsOrderBy(state, action);
-  return { ...state, products: products };
+  if (Constant.PRODUCT_ACTION.includes(action.type)) {
+    const products = getProductsOrderBy(state, action);
+    return { ...state, products: products };
+  } else {
+    return state;
+  }
 };
 
 export default productReducer;
