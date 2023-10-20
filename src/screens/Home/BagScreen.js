@@ -27,7 +27,6 @@ class BagScreen extends React.Component {
 
     const updatedCheckedItems = isCheckedAll ? [] : bags.map((item) => item.product.id);
     const test = isCheckedAll ? 'Chọn hết' : 'Đã click All';
-    console.log('>>>Check updatedCheckedItems', updatedCheckedItems);
     this.setState({
       isCheckedAll: !this.state.isCheckedAll,
       checkedItems: updatedCheckedItems,
@@ -47,7 +46,6 @@ class BagScreen extends React.Component {
   };
   render() {
     const { shoppingBagsUserLogin } = this.props;
-    console.log(shoppingBagsUserLogin);
     return (
       <View>
         <View style={{ width: '100%', marginTop: 65 }}>

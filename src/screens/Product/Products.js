@@ -2,12 +2,11 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, FlatList, Alert, TouchableOpacity } from 'react-native';
 import { Divider } from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
-import RatingComponent from '../component/RatingComponent';
-import PriceFormat from '../component/PriceFormat';
-import Appbar from '../component/Appbar';
+import RatingComponent from '../../component/RatingComponent';
+import PriceFormat from '../../component/PriceFormat';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { connect } from 'react-redux';
-import DividerComponent from '../component/DividerComponent';
+import DividerComponent from '../../component/DividerComponent';
 
 class Products extends React.Component {
   constructor(props) {

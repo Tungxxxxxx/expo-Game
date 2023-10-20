@@ -72,11 +72,9 @@ function GetUsersAddedProduct(state, action) {
   // Tìm product đã tồn tại chưa
   const findProductIndex = shoppingBagsCopy.findIndex((item) => item.product.id === action.payload.product.id);
   if (findProductIndex !== -1) {
-    console.log('>>>Đã tồn tại');
     console.log(JSON.stringify(shoppingBagsCopy[findProductIndex]));
     shoppingBagsCopy[findProductIndex].qty = shoppingBagsCopy[findProductIndex].qty + 1;
   } else {
-    console.log('>>>chưa tồn tại');
     shoppingBagsCopy.push({ product: action.payload.product, qty: 1 });
   }
   // Set shoppingBags cho usersCopy

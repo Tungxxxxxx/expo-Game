@@ -119,6 +119,9 @@ class Main extends React.Component {
       });
     }, 1000);
   };
+  handleForgetPass() {
+    // this.props.navigation.navigate('ProductScreen');
+  }
   render() {
     const { page, bgHeader, currentIndex } = this.state;
     return (

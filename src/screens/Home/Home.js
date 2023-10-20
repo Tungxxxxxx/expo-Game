@@ -8,7 +8,6 @@ import ProductScreen from './ProductScreen';
 import IconWithBadge from '../../component/IconWithBadge';
 import React from 'react';
 import Appbar from '../../component/Appbar';
-import ProductStackScreen from '../../navigation/ProductStackScreen';
 import NotificationScreen from './NotificationScreen';
 import UserInfoScreen from './UserInfoScreen';
 import SupportScreen from './SupportScreen';
@@ -53,7 +52,7 @@ class Home extends React.Component {
               headerShown: false,
             }}
           >
-            {() => <ProductStackScreen searchVal={this.state.searchVal} />}
+            {() => <ProductScreen navigation={this.props.navigation} searchVal={this.state.searchVal} />}
           </Tab.Screen>
           <Tab.Screen
             name="Order"

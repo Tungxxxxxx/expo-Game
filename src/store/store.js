@@ -3,13 +3,13 @@ import { createStore, combineReducers } from 'redux';
 import userReducer from './reducers/userReducer';
 import userLoginReducer from './reducers/userLoginReducer';
 import productReducer from './reducers/productReducer';
-import currentBagReducer from './reducers/currentBagReducer';
+import RatingReducer from './reducers/RatingReducer';
 // Tạo reducer tổng
 const rootReducer = combineReducers({
   users: userReducer,
   userLogin: userLoginReducer,
   products: productReducer,
-  currentBags: currentBagReducer,
+  ratings: RatingReducer,
   //các reduecer khác nếu có
 });
 //Tạo store cho redux

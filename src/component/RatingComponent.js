@@ -18,7 +18,7 @@ class RatingComponent extends React.Component {
           {ratings.map((item, i) => {
             return <Text key={i}>⭐</Text>;
           })}
-          <Text> {rating}/5</Text>
+          {/* <Text> {rating}/5</Text> */}
         </View>
       );
     }

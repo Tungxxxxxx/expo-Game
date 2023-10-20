@@ -1,8 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import Products from '../Products';
-import ProductDetail from '../ProductDetail';
+import Products from '../Product/Products';
 import { createStackNavigator } from '@react-navigation/stack';
 const Stack = createStackNavigator();
 class ProductScreen extends React.Component {
@@ -30,10 +29,6 @@ class ProductScreen extends React.Component {
       page: 'PRODUCT',
     });
   };
-  handleShowProductDetail = () => {
-    const { navigation } = this.props;
-    navigation.navigate('ProductDetail');
-  };
   handleProductDetail = (product) => {
     const { navigation } = this.props;
     navigation.navigate('ProductDetail', { product: product });
@@ -43,13 +38,6 @@ class ProductScreen extends React.Component {
     return (
       <>
         <View style={{}}>
-          <TouchableOpacity
-            onPress={() => {
-              this.handleShowProductDetail();
-            }}
-          >
-            <Text>sssssssssss</Text>
-          </TouchableOpacity>
           <Products
             searchVal={this.props.searchVal}
             handleAddBag={this.handleAddBag}
@@ -57,10 +45,6 @@ class ProductScreen extends React.Component {
             handleProductDetail={this.handleProductDetail}
           />
         </View>
-        <Stack.Navigator>
-          <Stack.Screen name="Products" component={ProductScreen} options={{ headerShown: false }} />
-          <Stack.Screen name="ProductDetail" component={ProductDetail} />
-        </Stack.Navigator>
       </>
     );
   }
