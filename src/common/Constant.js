@@ -6,5 +6,6 @@ export const GIA_GIAM = 'GIA_GIAM';
 export const SEARCH = 'SEARCH';
 export const SET_USER_LOGIN = 'SET_USER_LOGIN';
 export const ADD_PRODUCT_BAG = 'ADD_PRODUCT_BAG';
+export const ADD_QTY_TO_BAG = 'ADD_QTY_TO_BAG';
 export const PRODUCT_ACTION = [PHO_BIEN, MOI_NHAT, BAN_CHAY, GIA_TANG, GIA_GIAM, SEARCH];
-export const USER_ACTION = [ADD_PRODUCT_BAG];
+export const USER_ACTION = [ADD_PRODUCT_BAG, ADD_QTY_TO_BAG];

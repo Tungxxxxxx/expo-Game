@@ -56,7 +56,7 @@ class ProductScreen extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     AddProductToBag: (product, userLogin) =>
-      dispatch({ type: 'ADD_PRODUCT_BAG', payload: { product: product, userLogin: userLogin } }),
+      dispatch({ type: 'ADD_PRODUCT_BAG', payload: { product: product, userLogin: userLogin, qty: 1 } }),
   };
 };
 export default connect(null, mapDispatchToProps)(ProductScreen);

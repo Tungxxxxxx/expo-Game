@@ -7,7 +7,7 @@ import { FlatList, ScrollView, TouchableOpacity } from 'react-native';
 import { Divider } from 'react-native-paper';
 import Ratings from './Ratings';
 import { Dimensions } from 'react-native';
-import Bottom from '../../component/DITMEMAY';
+import BottomBar from '../../component/BottomBar';
 const { width } = Dimensions.get('window');
 const screenWidth = width - 10;
 class ProductDetail extends React.Component {
@@ -20,14 +20,13 @@ class ProductDetail extends React.Component {
       if (nativeEvent && nativeEvent.contentOffset) {
         currentOffset = nativeEvent.contentOffset.x;
       }
-      console.log('>>>>Check event scroll', currentOffset / screenWidth);
+      // console.log('>>>>Check event scroll', currentOffset / screenWidth);
     }
   };
   render() {
     const { product } = this.props.route.params;
-    console.log(product);
     return (
-      <View style={{ backgroundColor: '#fff' }}>
+      <View style={{ flex: 1, backgroundColor: '#fff' }}>
         <ScrollView nestedScrollEnabled={true} showsVerticalScrollIndicator={false}>
           <View style={{ width: '100%', padding: 5 }}>
             <View>
@@ -75,7 +74,7 @@ class ProductDetail extends React.Component {
             <View style={{ width: '100%', marginBottom: 150 }}>
               <Divider style={{ backgroundColor: 'orange', marginTop: 30 }} />
               <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Mô tả sản phẩm</Text>
-
+              <Text>{product.description}</Text>
               <Divider style={{ backgroundColor: 'orange', marginTop: 30 }} />
               <View>
                 <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Đánh giá</Text>
@@ -84,7 +83,7 @@ class ProductDetail extends React.Component {
             </View>
           </View>
         </ScrollView>
-        <Bottom />
+        <BottomBar product={product} handleAddBagWithQty={this.props.handleAddBagWithQty} />
       </View>
     );
   }

@@ -7,7 +7,6 @@ import { Rating } from 'react-native-elements';
 
 class Ratings extends React.Component {
   getRatingsForProduct = (product, ratings) => {
-    console.log(ratings[0]);
     return ratings.filter((item) => item.productId === product.id);
   };
   getUserReview = (rating, users) => {
@@ -53,7 +52,6 @@ class Ratings extends React.Component {
   }
 }
 const mapStateToProps = (state) => {
-  console.log('>>>Check state: ', state);
   return { ratings: state.ratings.ratings, users: state.users.users };
 };
 export default connect(mapStateToProps)(Ratings);

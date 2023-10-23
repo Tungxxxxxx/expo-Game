@@ -11,6 +11,7 @@ const initStateUsers = {
       userToken: 'token123',
       name: 'Phạm Thanh Tùng',
       nickname: 'Tùng Phạm',
+      address: '100 - đường Mỹ Đình - Nam Từ Liêm - Hà Nội',
       money: 1000000,
       avatar: require('../../assets/images/tungpt.png'),
       shoppingBags: [],
@@ -41,6 +42,7 @@ const initStateUsers = {
       userToken: 'token123',
       name: 'Sở Lưu Hương',
       nickname: 'Hương Sở',
+      address: '232 - đường Bạch Mai - Minh Khai - Hà Nội',
       money: 999999,
       avatar: require('../../assets/images/tx2.jpg'),
       shoppingBags: [],
@@ -54,6 +56,7 @@ const initStateUsers = {
       userToken: 'token123',
       name: 'Ái Tân Giác La',
       nickname: 'Huyền Diệp',
+      address: '111 - Trần Khát Chân - Ba Đình - Hà Nội',
       money: 898999999,
       avatar: require('../../assets/images/tx3.jpg'),
       shoppingBags: [],
@@ -64,18 +67,18 @@ const initStateUsers = {
 };
 function GetUsersAddedProduct(state, action) {
   const userLogin = action.payload.userLogin;
+  const qty = action.payload.qty;
   const usersCopy = [...state.users];
   const findIndex = usersCopy.findIndex((item) => item.id === userLogin.id);
   const shoppingBagsCopy = [...usersCopy[findIndex].shoppingBags];
   //Tăng count mỗi lần add product vào giỏ
-  usersCopy[findIndex].countProductInBag += 1;
+  usersCopy[findIndex].countProductInBag += qty;
   // Tìm product đã tồn tại chưa
   const findProductIndex = shoppingBagsCopy.findIndex((item) => item.product.id === action.payload.product.id);
   if (findProductIndex !== -1) {
-    console.log(JSON.stringify(shoppingBagsCopy[findProductIndex]));
-    shoppingBagsCopy[findProductIndex].qty = shoppingBagsCopy[findProductIndex].qty + 1;
+    shoppingBagsCopy[findProductIndex].qty = shoppingBagsCopy[findProductIndex].qty + qty;
   } else {
-    shoppingBagsCopy.push({ product: action.payload.product, qty: 1 });
+    shoppingBagsCopy.push({ product: action.payload.product, qty: qty });
   }
   // Set shoppingBags cho usersCopy
   usersCopy[findIndex].shoppingBags = shoppingBagsCopy;
@@ -92,6 +95,8 @@ const userReducer = (state = initStateUsers, action) => {
     const { usersAddedProduct, shoppingBagsUserLogin, countPIB } = GetUsersAddedProduct(state, action);
     switch (action.type) {
       case Constant.ADD_PRODUCT_BAG:
+        return { ...state, users: usersAddedProduct, shoppingBagsUserLogin: shoppingBagsUserLogin, countPIB: countPIB };
+      case Constant.ADD_QTY_TO_BAG:
         return { ...state, users: usersAddedProduct, shoppingBagsUserLogin: shoppingBagsUserLogin, countPIB: countPIB };
       default:
         return state;
