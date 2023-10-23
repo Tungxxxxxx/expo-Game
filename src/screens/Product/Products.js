@@ -149,7 +149,6 @@ class Products extends React.Component {
             <Divider />
           </View>
         </View>
-        {/* <ScrollView> */}
         <ScrollView showsVerticalScrollIndicator={false}>
           <View
             style={{

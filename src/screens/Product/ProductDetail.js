@@ -1,12 +1,15 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
+
 import PriceFormat from '../../component/PriceFormat';
 import RatingComponent from '../../component/RatingComponent';
 import { FlatList, ScrollView, TouchableOpacity } from 'react-native';
 import { Divider } from 'react-native-paper';
 import Ratings from './Ratings';
 import { Dimensions } from 'react-native';
-const { width: screenWidth } = Dimensions.get('window');
+import Bottom from '../../component/DITMEMAY';
+const { width } = Dimensions.get('window');
+const screenWidth = width - 10;
 class ProductDetail extends React.Component {
   handleScrollImageProduct = (e) => {
     if (!e) {
@@ -25,11 +28,12 @@ class ProductDetail extends React.Component {
     console.log(product);
     return (
       <View style={{ backgroundColor: '#fff' }}>
-        <ScrollView>
-          <View>
+        <ScrollView nestedScrollEnabled={true} showsVerticalScrollIndicator={false}>
+          <View style={{ width: '100%', padding: 5 }}>
             <View>
               {/* <FlatList
                 data={product.images}
+                style={{ width: screenWidth * product.images.length, height: 300 }}
                 horizontal
                 keyExtractor={(item) => item.id.toString()} //key
                 renderItem={({ item }) => (
@@ -43,14 +47,7 @@ class ProductDetail extends React.Component {
                       padding: 3,
                     }}
                   >
-                    <Image
-                      style={{
-                        resizeMode: 'cover', // Chế độ hiển thị hình ảnh
-                        width: '100%', // Sửa kích thước
-                        height: 300,
-                      }}
-                      source={{ uri: item.path }} // Sử dụng uri cho đường dẫn
-                    />
+                    <Image style={{ width: screenWidth, height: 300 }} source={item.path} />
                   </View>
                 )}
               /> */}
@@ -64,13 +61,22 @@ class ProductDetail extends React.Component {
                 }}
               >
                 {product.images.map((item, i) => {
-                  return <Image key={item.id} style={{ width: screenWidth, height: 300 }} source={item.path} />;
+                  return (
+                    <View
+                      key={item.id}
+                      style={{ width: screenWidth, height: 300, alignItems: 'center', justifyContent: 'center' }}
+                    >
+                      <Image key={item.id} style={{ width: screenWidth, height: '95%' }} source={item.path} />
+                    </View>
+                  );
                 })}
               </ScrollView>
             </View>
-            <View style={{ width: '100%', height: 500 }}>
-              <Text style={{ textIndent: 20 }}>{product.description}</Text>
-              <Divider style={{ backgroundColor: 'green' }} />
+            <View style={{ width: '100%', marginBottom: 150 }}>
+              <Divider style={{ backgroundColor: 'orange', marginTop: 30 }} />
+              <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Mô tả sản phẩm</Text>
+
+              <Divider style={{ backgroundColor: 'orange', marginTop: 30 }} />
               <View>
                 <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Đánh giá</Text>
                 <Ratings product={product} />
@@ -78,6 +84,7 @@ class ProductDetail extends React.Component {
             </View>
           </View>
         </ScrollView>
+        <Bottom />
       </View>
     );
   }

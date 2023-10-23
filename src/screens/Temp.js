@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { View, Text } from 'react-native';
 //import connect để kết nối redux
 import { connect } from 'react-redux';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native';
 class Temp extends React.Component {
   handleLogin = () => {
     this.props.SetLoginUser(12312);

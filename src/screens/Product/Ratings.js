@@ -18,6 +18,8 @@ class Ratings extends React.Component {
     return (
       <View>
         <FlatList
+          showsVerticalScrollIndicator={false}
+          scrollEnabled={false}
           data={this.getRatingsForProduct(product, ratings)}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
