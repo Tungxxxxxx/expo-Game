@@ -1,6 +1,8 @@
+import { Icon } from '@rneui/themed';
 import React from 'react';
 import { TextInput, TouchableOpacity } from 'react-native';
 import { View, Text } from 'react-native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 class AddQty extends React.Component {
   constructor(props) {
     super(props);
@@ -46,7 +48,7 @@ class AddQty extends React.Component {
             this.handleDecrementQty();
           }}
         >
-          <Text>-</Text>
+          <MaterialCommunityIcons name="minus" />
         </TouchableOpacity>
         <View
           style={{
@@ -60,7 +62,7 @@ class AddQty extends React.Component {
         >
           <TextInput
             style={{ color: 'red', width: '100%', textAlign: 'center' }}
-            value={this.state.qty}
+            value={this.state.qty.toString()}
             onChangeText={(val) => {
               this.handleChangeQty(val);
             }}
@@ -72,7 +74,7 @@ class AddQty extends React.Component {
             this.handleAddQty();
           }}
         >
-          <Text>+</Text>
+          <MaterialCommunityIcons name="plus" />
         </TouchableOpacity>
         <TextInput style={{ color: 'red' }} />
       </View>

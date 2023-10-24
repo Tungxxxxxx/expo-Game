@@ -83,7 +83,11 @@ class ProductDetail extends React.Component {
             </View>
           </View>
         </ScrollView>
-        <BottomBar product={product} handleAddBagWithQty={this.props.handleAddBagWithQty} />
+        <BottomBar
+          product={product}
+          handleAddBagWithQty={this.props.handleAddBagWithQty}
+          navigation={this.props.navigation}
+        />
       </View>
     );
   }

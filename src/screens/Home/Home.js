@@ -35,8 +35,10 @@ class Home extends React.Component {
         <Tab.Navigator
           initialRouteName="Products"
           screenOptions={{
-            tabBarActiveTintColor: 'red',
-            tabBarInactiveTintColor: 'blue',
+            tabBarInactiveTintColor: 'rgba(111, 202, 186, 1)',
+            tabBarIndicatorStyle: {
+              backgroundColor: 'orange',
+            },
             tabBarStyle: {
               height: 45,
               backgroundColor: '#e1f0ff',
@@ -47,7 +49,9 @@ class Home extends React.Component {
           <Tab.Screen
             name="Products"
             options={{
-              tabBarIcon: () => <Icon name="home" color={'rgba(111, 202, 186, 1)'} size={24} />,
+              tabBarIcon: ({ focused }) => (
+                <Icon name="home" color={focused ? 'orange' : 'rgba(111, 202, 186, 1)'} size={24} />
+              ),
               title: '',
               headerShown: false,
             }}
@@ -57,7 +61,9 @@ class Home extends React.Component {
           <Tab.Screen
             name="Order"
             options={{
-              tabBarIcon: () => <Icon name="shopping-bag" color={'rgba(111, 202, 186, 1)'} size={24} />,
+              tabBarIcon: ({ focused }) => (
+                <Icon name="shopping-bag" color={focused ? 'orange' : 'rgba(111, 202, 186, 1)'} size={24} />
+              ),
               title: '',
               headerShown: false,
             }}
@@ -67,11 +73,11 @@ class Home extends React.Component {
           <Tab.Screen
             name="shoppingBag"
             options={{
-              tabBarIcon: () => (
+              tabBarIcon: ({ focused }) => (
                 <IconWithBadge
                   badgeCount={this.props.countPIB}
                   name={'shopping-cart'}
-                  color={'rgba(111, 202, 186, 1)'}
+                  color={focused ? 'orange' : 'rgba(111, 202, 186, 1)'}
                   size={24}
                 />
               ),
@@ -84,11 +90,11 @@ class Home extends React.Component {
           <Tab.Screen
             name="notifications"
             options={{
-              tabBarIcon: () => (
+              tabBarIcon: ({ focused }) => (
                 <IconWithBadge
                   badgeCount={this.props.countPIB}
                   name={'notifications'}
-                  color={'rgba(111, 202, 186, 1)'}
+                  color={focused ? 'orange' : 'rgba(111, 202, 186, 1)'}
                   size={24}
                 />
               ),
@@ -101,11 +107,11 @@ class Home extends React.Component {
           <Tab.Screen
             name="Support"
             options={{
-              tabBarIcon: () => (
+              tabBarIcon: ({ focused }) => (
                 <IconWithBadge
                   badgeCount={this.props.countPIB}
                   name={'chat'}
-                  color={'rgba(111, 202, 186, 1)'}
+                  color={focused ? 'orange' : 'rgba(111, 202, 186, 1)'}
                   size={24}
                 />
               ),

@@ -7,6 +7,7 @@ import { TouchableOpacity } from 'react-native';
 import { Icon } from '@rneui/themed';
 import { Divider } from 'react-native-paper';
 import { connect } from 'react-redux';
+import * as Constant from '../common/Constant';
 const screenHeight = Dimensions.get('window').height;
 class ProductModal extends React.Component {
   constructor(props) {
@@ -25,6 +26,15 @@ class ProductModal extends React.Component {
   };
   handleAddBagWithQty = (product, qty, userLogin) => {
     this.props.AddQtyToBag(product, qty, userLogin);
+  };
+  handleMuaNgay = () => {
+    const { navigation } = this.props;
+    navigation.navigate('PayScreen', {
+      product: this.props.product,
+      qty: this.state.qty,
+      userLogin: this.props.userLogin,
+    });
+    this.props.handleCloseModal(false);
   };
   render() {
     const { product, textSubmit, visibility, userLogin } = this.props;
@@ -58,7 +68,11 @@ class ProductModal extends React.Component {
                   alignItems: 'center',
                 }}
                 onPress={() => {
-                  this.handleAddBagWithQty(product, this.state.qty, userLogin);
+                  if (textSubmit === Constant.THEM_VAO_GIO) {
+                    this.handleAddBagWithQty(product, this.state.qty, userLogin);
+                  } else {
+                    this.handleMuaNgay();
+                  }
                 }}
               >
                 <Text>{textSubmit}</Text>

@@ -3,6 +3,7 @@ import React from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Divider } from 'react-native-paper';
 import ProductModal from './ProductModal';
+import * as Constant from '../common/Constant';
 class BottomBar extends React.Component {
   constructor(props) {
     super(props);
@@ -25,12 +26,12 @@ class BottomBar extends React.Component {
           </TouchableOpacity>
         </View>
         <View style={styles.buyButton}>
-          <TouchableOpacity onPress={() => this.handleOpenModal('Thêm vào giỏ')}>
-            <Text>Thêm vào giỏ</Text>
+          <TouchableOpacity onPress={() => this.handleOpenModal(Constant.THEM_VAO_GIO)}>
+            <Icon name="add-shopping-cart" size={24} />
           </TouchableOpacity>
         </View>
         <View style={styles.buyButton}>
-          <TouchableOpacity onPress={() => this.handleOpenModal('Mua ngay')}>
+          <TouchableOpacity onPress={() => this.handleOpenModal(Constant.MUA_NGAY)}>
             <Text>Mua ngay</Text>
           </TouchableOpacity>
         </View>
@@ -41,6 +42,7 @@ class BottomBar extends React.Component {
             product={this.props.product}
             textSubmit={textSubmit}
             handleAddBagWithQty={this.props.handleAddBagWithQty}
+            navigation={this.props.navigation}
           />
         ) : null}
       </View>

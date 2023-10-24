@@ -7,5 +7,7 @@ export const SEARCH = 'SEARCH';
 export const SET_USER_LOGIN = 'SET_USER_LOGIN';
 export const ADD_PRODUCT_BAG = 'ADD_PRODUCT_BAG';
 export const ADD_QTY_TO_BAG = 'ADD_QTY_TO_BAG';
+export const THEM_VAO_GIO = 'Thêm vào giỏ';
+export const MUA_NGAY = 'Mua ngay';
 export const PRODUCT_ACTION = [PHO_BIEN, MOI_NHAT, BAN_CHAY, GIA_TANG, GIA_GIAM, SEARCH];
 export const USER_ACTION = [ADD_PRODUCT_BAG, ADD_QTY_TO_BAG];
