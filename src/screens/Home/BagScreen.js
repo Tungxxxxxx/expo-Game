@@ -11,7 +11,7 @@ class BagScreen extends React.Component {
     super(props);
     this.state = {
       isCheckedAll: false,
-      checkedItems: [],
+      checkedItems: [1, 2, 3, 4, 5],
       test: 'Chọn tất',
     };
   }
@@ -48,7 +48,7 @@ class BagScreen extends React.Component {
     const { shoppingBagsUserLogin } = this.props;
     return (
       <View>
-        <View style={{ width: '100%', marginTop: 65 }}>
+        <View style={{ width: '100%' }}>
           {shoppingBagsUserLogin && shoppingBagsUserLogin.length > 0 ? (
             <>
               <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 5, alignItems: 'center' }}>

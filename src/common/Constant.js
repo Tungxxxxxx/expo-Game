@@ -1,3 +1,4 @@
+export const SET_NAVIGATION = 'SET_NAVIGATION';
 export const PHO_BIEN = 'PHO_BIEN';
 export const MOI_NHAT = 'MOI_NHAT';
 export const BAN_CHAY = 'BAN_CHAY';

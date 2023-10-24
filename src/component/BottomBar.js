@@ -10,7 +10,6 @@ class BottomBar extends React.Component {
     this.state = { visibility: false, textSubmit: '' };
   }
   handleOpenModal = (textSubmit) => {
-    console.log(textSubmit);
     this.setState({ visibility: true, textSubmit: textSubmit });
   };
   handleCloseModal = (visibility) => {
@@ -22,17 +21,17 @@ class BottomBar extends React.Component {
       <View style={styles.container}>
         <View style={styles.buyButton}>
           <TouchableOpacity style={styles.touch}>
-            <Text>Nhắn tin</Text>
+            <Icon name="chat" size={24} color={'#EE4E34'} />
           </TouchableOpacity>
         </View>
         <View style={styles.buyButton}>
           <TouchableOpacity onPress={() => this.handleOpenModal(Constant.THEM_VAO_GIO)}>
-            <Icon name="add-shopping-cart" size={24} />
+            <Icon name="add-shopping-cart" size={24} color={'#EE4E34'} />
           </TouchableOpacity>
         </View>
         <View style={styles.buyButton}>
           <TouchableOpacity onPress={() => this.handleOpenModal(Constant.MUA_NGAY)}>
-            <Text>Mua ngay</Text>
+            <Text style={{ color: '#EE4E34' }}>Mua ngay</Text>
           </TouchableOpacity>
         </View>
         {visibility ? (
@@ -61,7 +60,7 @@ const styles = StyleSheet.create({
     width: '33%',
     height: '100%',
     justifyContent: 'center',
-    backgroundColor: 'orange',
+    backgroundColor: '#FCEDDA',
     alignItems: 'center',
   },
   touch: {

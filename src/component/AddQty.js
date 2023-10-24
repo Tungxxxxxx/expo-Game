@@ -33,10 +33,13 @@ class AddQty extends React.Component {
     const rex = /^[1-9]\d*$/;
     if (rex.test(val)) {
       console.log(val + 'true');
-      this.setState({ qty: val });
+      //Gọi hàm update qty của parent
+      this.props.upDateQty(parseInt(val, 10));
+      this.setState({ qty: parseInt(val, 10) });
     } else {
       console.log(val + 'false');
       this.setState({ qty: '' });
+      //Nếu ko nhập ko hợp lệ thì lấy giá trị qty mặc địng của cha là 1
     }
   }
   render() {

@@ -18,9 +18,10 @@ class Route extends React.Component {
     this.state = {};
   }
   render() {
+    console.log('>>>>Route', Stack.Navigator);
     return (
-      <NavigationContainer>
-        <Stack.Navigator>
+      <NavigationContainer fallback={<></>}>
+        <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="Main" component={Main} options={{ headerShown: false }} />
           <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
           <Stack.Screen name="PayScreen" component={PayScreen} options={{ title: 'Thanh toán' }} />
@@ -31,13 +32,8 @@ class Route extends React.Component {
               title: 'Chi tiết sản phẩm',
               headerRight: () => (
                 <View style={{ flexDirection: 'row', marginRight: 10 }}>
-                  <Icon name="search" color={'rgba(111, 202, 186, 1)'} size={24} />
-                  <IconWithBadge
-                    badgeCount={this.props.countPIB}
-                    name={'shopping-cart'}
-                    color={'rgba(111, 202, 186, 1)'}
-                    size={24}
-                  />
+                  <Icon name="search" color={'#EE4E34'} size={24} marginRight={10} />
+                  <IconWithBadge badgeCount={this.props.countPIB} name={'shopping-cart'} color={'#EE4E34'} size={24} />
                 </View>
               ),
             }}

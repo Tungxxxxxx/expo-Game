@@ -19,7 +19,6 @@ class ProductModal extends React.Component {
   };
 
   upDateQty = (newQty) => {
-    console.log('>>>Check qty', newQty);
     this.setState({
       qty: newQty,
     });
@@ -61,7 +60,7 @@ class ProductModal extends React.Component {
               <TouchableOpacity
                 style={{
                   backgroundColor: 'orange',
-                  width: '80%',
+                  width: '100%',
                   height: 50,
                   flexDirection: 'row',
                   justifyContent: 'center',

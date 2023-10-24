@@ -12,6 +12,7 @@ import NotificationScreen from './NotificationScreen';
 import UserInfoScreen from './UserInfoScreen';
 import SupportScreen from './SupportScreen';
 import { Avatar } from 'react-native-paper';
+import * as Constant from '../../common/Constant';
 const Tab = createMaterialTopTabNavigator();
 class Home extends React.Component {
   constructor(props) {
@@ -26,7 +27,10 @@ class Home extends React.Component {
     });
     this.props.OnchangeSearch(val);
   };
-
+  //Lưu giá trị navigation vào redux để sử dụng trong ứng dụng
+  componentDidMount() {
+    this.props.SetNavigation(this.props.navigation);
+  }
   render() {
     const { userLogin } = this.props;
     return (
@@ -143,6 +147,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     OnchangeSearch: (searchVal) => dispatch({ type: 'SEARCH', payload: { searchVal: searchVal } }),
+    SetNavigation: (navigation) => dispatch({ type: Constant.SET_NAVIGATION, payload: { navigation: navigation } }),
   };
 };
 
