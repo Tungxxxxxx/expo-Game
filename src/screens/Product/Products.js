@@ -14,6 +14,7 @@ class Products extends React.Component {
     this.state = {
       orderBy: 'PHO_BIEN',
       isIncrease: false,
+      visiableProducts: 6,
     };
   }
   handlePressPhoBien = (searchVal) => {
@@ -47,6 +48,11 @@ class Products extends React.Component {
   };
   handlePressProduct = (product) => {
     this.props.handlePressProductImage(product);
+  };
+  handleLoadmore = () => {
+    this.setState((prevState) => {
+      return { visiableProducts: prevState.visiableProducts + 6 };
+    });
   };
   render() {
     const { products, userLogin, searchVal } = this.props;
@@ -150,98 +156,111 @@ class Products extends React.Component {
           </View>
         </View>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <View
-            style={{
-              width: '100%',
-              flex: 1,
-              marginTop: 5,
-              marginBottom: 150,
-              flexDirection: 'row',
-              flexWrap: 'wrap', // Cho phép xuống dòng
-              justifyContent: 'space-around',
-              paddingLeft: 5,
-            }}
-          >
-            <FlatList
-              scrollEnabled={false}
-              data={products}
-              numColumns={2}
-              keyExtractor={(item) => item.id.toString()} //key
-              renderItem={({ item }) => (
-                <View
-                  style={{
-                    width: '48%',
-                    height: 350,
-                    justifyContent: 'space-around',
-                    flexDirection: 'column',
-                    backgroundColor: '#fff',
-                    margin: 2,
-                    borderRadius: 2,
-                    padding: 3,
+          <View>
+            <View
+              style={{
+                width: '100%',
+                flex: 1,
+                marginTop: 5,
+                // marginBottom: 150,
+                flexDirection: 'row',
+                flexWrap: 'wrap', // Cho phép xuống dòng
+                justifyContent: 'space-around',
+                paddingLeft: 5,
+              }}
+            >
+              <FlatList
+                scrollEnabled={false}
+                data={products.slice(0, this.state.visiableProducts)} // Hiển thị visiableProducts records từ index 0
+                numColumns={2}
+                keyExtractor={(item) => item.id.toString()} //key
+                renderItem={({ item }) => (
+                  <View
+                    style={{
+                      width: '48%',
+                      height: 350,
+                      justifyContent: 'space-around',
+                      flexDirection: 'column',
+                      backgroundColor: '#fff',
+                      margin: 2,
+                      borderRadius: 2,
+                      padding: 3,
+                    }}
+                  >
+                    <TouchableOpacity
+                      onPress={() => {
+                        this.props.handleProductDetail(item);
+                      }}
+                    >
+                      <Image style={{ resizeMode: 'contain', width: '100%', height: 200 }} source={item.avatar} />
+                    </TouchableOpacity>
+                    <Text>{item.title}</Text>
+                    <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
+                      <Text style={{ color: 'red' }}>
+                        <PriceFormat price={item.price} />
+                      </Text>
+                      <Text style={{ color: 'red', fontStyle: 'italic' }}> -{item.saleOff}</Text>
+                    </View>
+                    <RatingComponent rating={item.rating} />
+                    <TouchableOpacity
+                      style={{
+                        width: '70%',
+                        height: 30,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        backgroundColor: 'orange',
+                        borderRadius: 10,
+                      }}
+                      onPress={() => {
+                        this.props.handleAddBag(item, userLogin);
+                      }}
+                    >
+                      <Text
+                        style={{
+                          color: 'rgb(57, 58, 52)',
+                          fontSize: 13,
+                        }}
+                      >
+                        Thêm vào giỏ
+                      </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={{
+                        width: '70%',
+                        height: 30,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        backgroundColor: 'orange',
+                        borderRadius: 10,
+                      }}
+                      onPress={() => {
+                        this.props.handleAddBag(item, userLogin);
+                      }}
+                    >
+                      <Text
+                        style={{
+                          color: 'rgb(57, 58, 52)',
+                          fontSize: 13,
+                        }}
+                      >
+                        Mua ngay
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
+              />
+            </View>
+            <View style={{ width: '100%', height: 150, alignItems: 'center' }}>
+              {this.state.visiableProducts < products.length && (
+                <TouchableOpacity
+                  onPress={() => {
+                    this.handleLoadmore();
                   }}
                 >
-                  <TouchableOpacity
-                    onPress={() => {
-                      this.props.handleProductDetail(item);
-                    }}
-                  >
-                    <Image style={{ resizeMode: 'contain', width: '100%', height: 200 }} source={item.avatar} />
-                  </TouchableOpacity>
-                  <Text>{item.title}</Text>
-                  <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
-                    <Text style={{ color: 'red' }}>
-                      <PriceFormat price={item.price} />
-                    </Text>
-                    <Text style={{ color: 'red', fontStyle: 'italic' }}> -{item.saleOff}</Text>
-                  </View>
-                  <RatingComponent rating={item.rating} />
-                  <TouchableOpacity
-                    style={{
-                      width: '70%',
-                      height: 30,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      backgroundColor: 'orange',
-                      borderRadius: 10,
-                    }}
-                    onPress={() => {
-                      this.props.handleAddBag(item, userLogin);
-                    }}
-                  >
-                    <Text
-                      style={{
-                        color: 'rgb(57, 58, 52)',
-                        fontSize: 13,
-                      }}
-                    >
-                      Thêm vào giỏ
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={{
-                      width: '70%',
-                      height: 30,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      backgroundColor: 'orange',
-                      borderRadius: 10,
-                    }}
-                    onPress={() => {
-                      this.props.handleAddBag(item, userLogin);
-                    }}
-                  >
-                    <Text
-                      style={{
-                        color: 'rgb(57, 58, 52)',
-                        fontSize: 13,
-                      }}
-                    >
-                      Mua ngay
-                    </Text>
-                  </TouchableOpacity>
-                </View>
+                  <Text>Xem thêm</Text>
+                </TouchableOpacity>
               )}
-            />
+            </View>
           </View>
         </ScrollView>
       </>

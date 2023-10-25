@@ -13,6 +13,7 @@ import UserInfoScreen from './UserInfoScreen';
 import SupportScreen from './SupportScreen';
 import { Avatar } from 'react-native-paper';
 import * as Constant from '../../common/Constant';
+import { StatusBar } from 'react-native';
 const Tab = createMaterialTopTabNavigator();
 class Home extends React.Component {
   constructor(props) {
@@ -35,6 +36,7 @@ class Home extends React.Component {
     const { userLogin } = this.props;
     return (
       <>
+        <StatusBar backgroundColor="#e1f0ff" barStyle="dark-content" />
         <Appbar handleSearchProduct={this.handleSearchProduct} searchVal={this.state.searchVal} />
         <Tab.Navigator
           initialRouteName="Products"
