@@ -23,7 +23,9 @@ class APIScreen extends React.Component {
       GetDelayedResponse: false,
     };
   }
-  GetListUsers = () => {};
+  GetListUsers = () => {
+    this.props.GetListUsers();
+  };
   GetSingleUser = () => {};
   GetSingleUserNotFound = () => {};
   GetListResource = () => {};
@@ -55,6 +57,10 @@ class APIScreen extends React.Component {
   HidePostLoginUnSuccessful = () => {};
   HideGetDelayedResponse = () => {};
   render() {
+    const { listUsers } = this.props;
+    if (listUsers) {
+      console.log('api: 2', listUsers.data);
+    }
     return (
       <View>
         <TouchableOpacity
@@ -162,10 +168,17 @@ class APIScreen extends React.Component {
         >
           <Text style={{ color: 'blue' }}>GET DELAYED RESPONSE</Text>
         </TouchableOpacity>
+        <View>
+          <Text>{listUsers && JSON.stringify(listUsers.data)}</Text>
+        </View>
       </View>
     );
   }
 }
+const mapStateToProps = (state) => {
+  console.log('ss', state.apiData);
+  return { listUsers: state.apiData.listUsers };
+};
 const mapDispatchToProps = (dispatch) => {
   return {
     GetListUsers: () => dispatch({ type: API.GET_LIST_USERS }),
@@ -185,4 +198,4 @@ const mapDispatchToProps = (dispatch) => {
     GetDelayedResponse: () => dispatch({ type: API.GET_DELAYED_RESPONSE }),
   };
 };
-export default connect(mapDispatchToProps)(APIScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(APIScreen);

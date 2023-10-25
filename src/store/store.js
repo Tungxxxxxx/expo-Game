@@ -5,6 +5,7 @@ import userLoginReducer from './reducers/userLoginReducer';
 import productReducer from './reducers/productReducer';
 import RatingReducer from './reducers/RatingReducer';
 import navigationReducer from './reducers/navigationReducer';
+import { apiReducer } from './reducers/apiReducer';
 // Tạo reducer tổng
 const rootReducer = combineReducers({
   users: userReducer,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   products: productReducer,
   ratings: RatingReducer,
   navigation: navigationReducer,
+  apiData: apiReducer,
   //các reduecer khác nếu có
 });
 //Tạo store cho redux

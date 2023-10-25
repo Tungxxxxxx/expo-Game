@@ -1,11 +1,13 @@
 import axios from 'axios';
 import * as API from '../../common/API';
+const initState = {};
 const fetchGetListUsers = async () => {
   try {
     const res = await axios.get(API.PATH_GET_LIST_USERS);
-    return res.data.data;
+    console.log('api: ', res.data.data);
+    return { data: res.data.data, message: API.SUCCESS };
   } catch (error) {
-    return error.message;
+    return { data: null, message: error.message };
   }
 };
 const fetchGetSingleUser = async () => {
@@ -33,13 +35,14 @@ const fetchGetSingleUser = async () => {
 // fetchPostLoginUnSuccessful
 // fetchGetDelayedResponse
 
-export const GetListUsersReducer = (state, action) => {
+export const apiReducer = (state = initState, action) => {
   switch (action.type) {
     case API.GET_LIST_USERS:
-      break;
+      console.log('api: ');
+      return { ...state, listUsers: fetchGetListUsers() };
 
     default:
-      break;
+      return state;
   }
 };
 //   export const GetSingleUserReducer =
