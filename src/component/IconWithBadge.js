@@ -1,27 +1,39 @@
 import { Icon } from '@rneui/base';
-import { View, Text } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { View, Text, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { connect } from 'react-redux';
+import { event } from 'react-native-reanimated';
 class IconWithBadge extends React.Component {
   constructor(props) {
     super(props);
   }
-  accessBag = () => {
-    console.log('>>>Check access bag');
-    console.log('>>>Check access bag', this.props);
+  accessBag = (event) => {
     const { navigation } = this.props;
     navigation.navigate('shoppingBag');
+  };
+  handleLayout = (event) => {
+    const { x, y, width, height } = event.nativeEvent.layout;
+    console.log('Tọa độ X:', x);
+    console.log('Tọa độ Y:', y);
+    console.log('Chiều rộng:', width);
+    console.log('Chiều cao:', height);
   };
   render() {
     const { badgeCount, name, color, size } = this.props;
     return (
-      <View style={{ with: 24, height: 24, margin: 0 }}>
+      <TouchableOpacity
+        style={{ with: 24, height: 24, margin: 0 }}
+        onPress={(event) => {
+          this.accessBag(event);
+        }}
+      >
         <Icon
           name={name}
           color={color}
           size={size}
-          onPress={() => {
-            this.accessBag();
+          onLayout={(event) => {
+            this.handleLayout(event);
           }}
         />
         {badgeCount > 0 && (
@@ -41,7 +53,7 @@ class IconWithBadge extends React.Component {
             <Text style={{ color: 'white', fontSize: 11 }}>{badgeCount <= 99 ? <>{badgeCount}</> : <>99+</>}</Text>
           </View>
         )}
-      </View>
+      </TouchableOpacity>
     );
   }
 }

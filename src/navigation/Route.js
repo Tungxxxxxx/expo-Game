@@ -4,9 +4,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Main from '../screens/wellcome/Main';
 import Home from '../screens/Home/Home';
 import ProductDetail from '../screens/Product/ProductDetail';
-import { Icon } from '@rneui/themed';
-import { View } from 'react-native';
-import IconWithBadge from '../component/IconWithBadge';
 import { connect } from 'react-redux';
 import PayScreen from '../screens/Product/PayScreen';
 
@@ -18,7 +15,6 @@ class Route extends React.Component {
     this.state = {};
   }
   render() {
-    console.log('>>>>Route', Stack.Navigator);
     return (
       <NavigationContainer fallback={<></>}>
         <Stack.Navigator initialRouteName="Home">
@@ -29,13 +25,7 @@ class Route extends React.Component {
             name="ProductDetail"
             component={ProductDetail}
             options={{
-              title: 'Chi tiết sản phẩm',
-              headerRight: () => (
-                <View style={{ flexDirection: 'row', marginRight: 10 }}>
-                  <Icon name="search" color={'#EE4E34'} size={24} marginRight={10} />
-                  <IconWithBadge badgeCount={this.props.countPIB} name={'shopping-cart'} color={'#EE4E34'} size={24} />
-                </View>
-              ),
+              headerShown: false,
             }}
           />
         </Stack.Navigator>
@@ -43,8 +33,5 @@ class Route extends React.Component {
     );
   }
 }
-const mapStateToProps = (state) => {
-  return { countPIB: state.users.countPIB, users: state.users, userLogin: state.userLogin.userLogin };
-};
 
-export default connect(mapStateToProps)(Route);
+export default Route;

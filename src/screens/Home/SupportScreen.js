@@ -10,7 +10,6 @@ class SupportScreen extends React.Component {
     // Thêm một listener để theo dõi giá trị của animatedValue
     this.state.animatedValue.addListener((event) => {
       const { value } = event;
-      console.log('Giá trị của animatedValue là: ', value);
     });
   }
   startAnimation = () => {
@@ -28,7 +27,6 @@ class SupportScreen extends React.Component {
   };
 
   render() {
-    console.log(this.state.animatedValue.Value);
     const translateX = this.state.animatedValue.interpolate({
       inputRange: [0, 1],
       outputRange: [0, 400], // Di chuyển từ 0 đến 10 theo trục X

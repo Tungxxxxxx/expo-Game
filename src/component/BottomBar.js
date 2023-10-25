@@ -15,6 +15,11 @@ class BottomBar extends React.Component {
   handleCloseModal = (visibility) => {
     this.setState({ visibility: visibility });
   };
+  onPressWithoutModal = (visibility) => {
+    this.setState({
+      visibility: visibility,
+    });
+  };
   render() {
     const { visibility, textSubmit } = this.state;
     return (
@@ -42,6 +47,7 @@ class BottomBar extends React.Component {
             textSubmit={textSubmit}
             handleAddBagWithQty={this.props.handleAddBagWithQty}
             navigation={this.props.navigation}
+            onPressWithoutModal={this.onPressWithoutModal}
           />
         ) : null}
       </View>

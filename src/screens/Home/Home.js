@@ -13,7 +13,8 @@ import UserInfoScreen from './UserInfoScreen';
 import SupportScreen from './SupportScreen';
 import { Avatar } from 'react-native-paper';
 import * as Constant from '../../common/Constant';
-import { StatusBar } from 'react-native';
+import { StatusBar, Text } from 'react-native';
+import APIScreen from './APIScreen';
 const Tab = createMaterialTopTabNavigator();
 class Home extends React.Component {
   constructor(props) {
@@ -97,12 +98,7 @@ class Home extends React.Component {
             name="notifications"
             options={{
               tabBarIcon: ({ focused }) => (
-                <IconWithBadge
-                  badgeCount={this.props.countPIB}
-                  name={'notifications'}
-                  color={focused ? 'orange' : 'rgba(111, 202, 186, 1)'}
-                  size={24}
-                />
+                <Icon name="notifications" color={focused ? 'orange' : 'rgba(111, 202, 186, 1)'} size={24} />
               ),
               title: '',
               headerShown: false,
@@ -114,18 +110,27 @@ class Home extends React.Component {
             name="Support"
             options={{
               tabBarIcon: ({ focused }) => (
-                <IconWithBadge
-                  badgeCount={this.props.countPIB}
-                  name={'chat'}
-                  color={focused ? 'orange' : 'rgba(111, 202, 186, 1)'}
-                  size={24}
-                />
+                <Icon name="chat" color={focused ? 'orange' : 'rgba(111, 202, 186, 1)'} size={24} />
               ),
               title: '',
               headerShown: false,
             }}
           >
             {() => <SupportScreen />}
+          </Tab.Screen>
+          <Tab.Screen
+            name="API"
+            options={{
+              tabBarIcon: ({ focused }) => (
+                <Text color={focused ? 'orange' : 'rgba(111, 202, 186, 1)'} style={{ fontSize: 15 }}>
+                  API
+                </Text>
+              ),
+              title: '',
+              headerShown: false,
+            }}
+          >
+            {() => <APIScreen />}
           </Tab.Screen>
           <Tab.Screen
             name="User"

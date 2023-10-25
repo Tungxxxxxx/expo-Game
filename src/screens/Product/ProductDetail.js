@@ -1,15 +1,19 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-import PriceFormat from '../../component/PriceFormat';
-import RatingComponent from '../../component/RatingComponent';
-import { FlatList, ScrollView, TouchableOpacity } from 'react-native';
+import { ScrollView } from 'react-native';
 import { Divider } from 'react-native-paper';
 import Ratings from './Ratings';
 import { Dimensions } from 'react-native';
 import BottomBar from '../../component/BottomBar';
+import ProductDetailHeader from '../../component/ProductDetailHeader';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Icon } from '@rneui/themed';
+import { connect } from 'react-redux';
+import IconWithBadge from '../../component/IconWithBadge';
 const { width } = Dimensions.get('window');
-const screenWidth = width - 10;
+const screenWidth = width;
 class ProductDetail extends React.Component {
   handleScrollImageProduct = (e) => {
     if (!e) {
@@ -25,69 +29,83 @@ class ProductDetail extends React.Component {
   };
   render() {
     const { product } = this.props.route.params;
+    const { navigation, countPIB } = this.props;
     return (
-      <View style={{ flex: 1, backgroundColor: '#fff' }}>
-        <ScrollView nestedScrollEnabled={true} showsVerticalScrollIndicator={false}>
-          <View style={{ width: '100%', padding: 5 }}>
-            <View>
-              {/* <FlatList
-                data={product.images}
-                style={{ width: screenWidth * product.images.length, height: 300 }}
-                horizontal
-                keyExtractor={(item) => item.id.toString()} //key
-                renderItem={({ item }) => (
-                  <View
-                    style={{
-                      width: '30%',
-                      height: 350,
-                      backgroundColor: '#fff',
-                      margin: 2,
-                      borderRadius: 2,
-                      padding: 3,
-                    }}
-                  >
-                    <Image style={{ width: screenWidth, height: 300 }} source={item.path} />
-                  </View>
-                )}
-              /> */}
-              <ScrollView
-                pagingEnabled
-                horizontal={true}
-                contentContainerStyle={{ width: screenWidth * product.images.length, height: 300 }}
-                scrollEventThrottle={16}
-                onScroll={(e) => {
-                  this.handleScrollImageProduct(e);
-                }}
-              >
-                {product.images.map((item, i) => {
-                  return (
-                    <View
-                      key={item.id}
-                      style={{ width: screenWidth, height: 300, alignItems: 'center', justifyContent: 'center' }}
-                    >
-                      <Image key={item.id} style={{ width: screenWidth, height: '95%' }} source={item.path} />
-                    </View>
-                  );
-                })}
-              </ScrollView>
-            </View>
-            <View style={{ width: '100%', marginBottom: 150 }}>
-              <Divider style={{ backgroundColor: 'orange', marginTop: 30 }} />
-              <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Mô tả sản phẩm</Text>
-              <Text>{product.description}</Text>
-              <Divider style={{ backgroundColor: 'orange', marginTop: 30 }} />
+      <View style={{ flex: 1 }}>
+        <View
+          style={{
+            width: '100%',
+            height: 50,
+            backgroundColor: 'transparent',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            zIndex: 2,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          <Ionicons
+            name="arrow-back-outline"
+            size={30}
+            color={'#EE4E34'}
+            style={{ right: 1 }}
+            onPress={() => {
+              navigation.goBack();
+            }}
+          />
+          <View
+            style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginRight: 10 }}
+          >
+            <Icon name="search" color={'#EE4E34'} size={24} marginRight={10} />
+            <IconWithBadge badgeCount={countPIB} name={'shopping-cart'} color={'#EE4E34'} size={24} />
+          </View>
+        </View>
+        <View style={{ flex: 1, width: '100%', backgroundColor: '#fff' }}>
+          <ScrollView nestedScrollEnabled={true} showsVerticalScrollIndicator={false}>
+            <View style={{ width: '100%', padding: 0 }}>
               <View>
-                <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Đánh giá</Text>
-                <Ratings product={product} />
+                <ScrollView
+                  pagingEnabled
+                  horizontal={true}
+                  contentContainerStyle={{ width: screenWidth * product.images.length, height: 300 }}
+                  scrollEventThrottle={16}
+                  onScroll={(e) => {
+                    this.handleScrollImageProduct(e);
+                  }}
+                >
+                  {product.images.map((item, i) => {
+                    return (
+                      <View
+                        key={item.id}
+                        style={{ width: screenWidth, height: 300, alignItems: 'center', justifyContent: 'center' }}
+                      >
+                        <Image key={item.id} style={{ width: screenWidth, height: '100%' }} source={item.path} />
+                      </View>
+                    );
+                  })}
+                </ScrollView>
+              </View>
+              <View style={{ width: '100%', marginBottom: 150 }}>
+                <Divider style={{ backgroundColor: 'orange', marginTop: 10, marginBottom: 10 }} />
+                <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Mô tả sản phẩm</Text>
+                <Text>{product.description}</Text>
+                <Divider style={{ backgroundColor: 'orange', marginTop: 10, marginBottom: 10 }} />
+                <View>
+                  <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Đánh giá</Text>
+                  <Ratings product={product} />
+                </View>
               </View>
             </View>
-          </View>
-        </ScrollView>
-        <BottomBar
-          product={product}
-          handleAddBagWithQty={this.props.handleAddBagWithQty}
-          navigation={this.props.navigation}
-        />
+          </ScrollView>
+          <BottomBar
+            product={product}
+            handleAddBagWithQty={this.props.handleAddBagWithQty}
+            navigation={this.props.navigation}
+          />
+        </View>
       </View>
     );
   }
@@ -102,5 +120,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'lightblue',
   },
 });
-
-export default ProductDetail;
+const mapStateToProps = (state) => {
+  return {
+    navigation: state.navigation.navigation,
+    countPIB: state.users.countPIB,
+    users: state.users,
+    userLogin: state.userLogin.userLogin,
+  };
+};
+export default connect(mapStateToProps)(ProductDetail);
