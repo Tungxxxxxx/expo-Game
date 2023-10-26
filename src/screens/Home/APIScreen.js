@@ -1,75 +1,142 @@
 import React from 'react';
 import { TouchableOpacity, Text, View } from 'react-native';
+//Thêm connect
 import { connect } from 'react-redux';
-import * as API from '../../common/API';
+//Thêm action
+import { fetchGetListUsers } from '../../redux/action/getListUsers';
+import { fetchGetSingleUser } from '../../redux/action/getSingleUser';
+import { fetchGetSingleUserNotFound } from '../../redux/action/getSingleUserNotFound';
+import { fetchGetListResource } from '../../redux/action/getListResource';
+import { fetchGetSingleResource } from '../../redux/action/getSingleResource';
+import { fetchGetSingleResourceNotFound } from '../../redux/action/getSingleResourceNotFound';
+import { fetchGetDelayed } from '../../redux/action/getDelayedResponse';
+import { fetchPostCreate } from '../../redux/action/postCreate';
+import Loading from '../../component/Loading';
+import { Divider } from 'react-native-paper';
 class APIScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      GetListUsers: false,
-      GetSingleUser: false,
-      GetSingleUserNotFound: false,
-      GetListResource: false,
-      GetSingleResource: false,
-      GetSingleResourceNotFound: false,
-      PostCreate: false,
-      PutUpdate: false,
-      PatchUpdate: false,
-      DeleteDelete: false,
-      PostRegisterSuccessful: false,
-      PostRegisterUnSuccessful: false,
-      PostLoginSuccessful: false,
-      PostLoginUnSuccessful: false,
-      GetDelayedResponse: false,
+      isShowData: false,
+      userPostCreate: {
+        name: 'morpheus',
+        job: 'leader',
+      },
     };
   }
   GetListUsers = () => {
-    this.props.GetListUsers();
+    this.setState({
+      isShowData: true,
+    });
+    this.props.fetchGetListUsers();
   };
-  GetSingleUser = () => {};
-  GetSingleUserNotFound = () => {};
-  GetListResource = () => {};
-  GetSingleResource = () => {};
-  GetSingleResourceNotFound = () => {};
-  PostCreate = () => {};
-  PutUpdate = () => {};
-  PatchUpdate = () => {};
-  DeleteDelete = () => {};
-  PostRegisterSuccessful = () => {};
-  PostRegisterUnSuccessful = () => {};
-  PostLoginSuccessful = () => {};
-  PostLoginUnSuccessful = () => {};
-  GetDelayedResponse = () => {};
+  GetSingleUser = () => {
+    this.setState({
+      isShowData: true,
+    });
+    this.props.fetchGetSingleUser();
+  };
+  GetSingleUserNotFound = () => {
+    this.setState({
+      isShowData: true,
+    });
+    this.props.fetchGetSingleUserNotFound();
+  };
+  GetListResource = () => {
+    this.setState({
+      isShowData: true,
+    });
+    this.props.fetchGetListResource();
+  };
+  GetSingleResource = () => {
+    this.setState({
+      isShowData: true,
+    });
+    this.props.fetchGetSingleResource();
+  };
+  GetSingleResourceNotFound = () => {
+    this.setState({
+      isShowData: true,
+    });
+    this.props.fetchGetSingleResourceNotFound();
+  };
+  PostCreate = () => {
+    this.setState({
+      isShowData: true,
+    });
+    this.props.fetchPostCreate(JSON.stringify(this.state.userPostCreate));
+  };
+  PutUpdate = () => {
+    this.setState({
+      isShowData: true,
+    });
+  };
+  PatchUpdate = () => {
+    this.setState({
+      isShowData: true,
+    });
+  };
+  DeleteDelete = () => {
+    this.setState({
+      isShowData: true,
+    });
+  };
+  PostRegisterSuccessful = () => {
+    this.setState({
+      isShowData: true,
+    });
+  };
+  PostRegisterUnSuccessful = () => {
+    this.setState({
+      isShowData: true,
+    });
+  };
+  PostLoginSuccessful = () => {
+    this.setState({
+      isShowData: true,
+    });
+  };
+  PostLoginUnSuccessful = () => {
+    this.setState({
+      isShowData: true,
+    });
+  };
+  GetDelayedResponse = () => {
+    this.setState({
+      isShowData: true,
+    });
+    this.props.fetchGetDelayed();
+  };
   //Ẩn
-  HideGetListUsers = () => {};
-  HideGetSingleUser = () => {};
-  HideGetSingleUserNotFound = () => {};
-  HideGetListResource = () => {};
-  HideGetSingleResource = () => {};
-  HideGetSingleResourceNotFound = () => {};
-  HidePostCreate = () => {};
-  HidePutUpdate = () => {};
-  HidePatchUpdate = () => {};
-  HideDeleteDelete = () => {};
-  HidePostRegisterSuccessful = () => {};
-  HidePostRegisterUnSuccessful = () => {};
-  HidePostLoginSuccessful = () => {};
-  HidePostLoginUnSuccessful = () => {};
-  HideGetDelayedResponse = () => {};
+  HideGetListUsers = () => {
+    this.setState({
+      isShowData: false,
+    });
+  };
+
+  componentDidMount() {}
   render() {
-    const { listUsers } = this.props;
-    if (listUsers) {
-      console.log('api: 2', listUsers.data);
-    }
+    const { listUsers, singleUser, loading, error } = this.props;
+    console.log(loading);
     return (
-      <View>
-        <TouchableOpacity
-          onPress={() => {
-            this.GetListUsers();
-          }}
-        >
-          <Text style={{ color: 'blue' }}>GET LIST USERS</Text>
-        </TouchableOpacity>
+      <View style={{ paddingTop: 30 }}>
+        <View style={{ flexDirection: 'row' }}>
+          <TouchableOpacity
+            onPress={() => {
+              this.GetListUsers();
+            }}
+            style={{ marginRight: 20 }}
+          >
+            <Text style={{ color: 'blue' }}>GET LIST USERS</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              this.HideGetListUsers();
+            }}
+          >
+            <Text style={{ color: 'blue' }}>Ẩn</Text>
+          </TouchableOpacity>
+        </View>
         <TouchableOpacity
           onPress={() => {
             this.GetSingleUser();
@@ -168,34 +235,42 @@ class APIScreen extends React.Component {
         >
           <Text style={{ color: 'blue' }}>GET DELAYED RESPONSE</Text>
         </TouchableOpacity>
-        <View>
-          <Text>{listUsers && JSON.stringify(listUsers.data)}</Text>
+
+        {loading && <Loading />}
+        <Divider style={{ marginTop: 20, marginBottom: 20 }} />
+        <View style={{ backgroundColor: '#e1f0ff' }}>
+          <Text style={{ fontWeight: 'bold', alignSelf: 'center', marginBottom: 10 }}>Kết quả</Text>
+          <Text>
+            {this.state.isShowData && listUsers && listUsers.length > 0 && JSON.stringify(listUsers, null, 2)}
+          </Text>
+          <Text>
+            {this.state.isShowData &&
+              singleUser &&
+              Object.keys(singleUser).length > 0 &&
+              JSON.stringify(singleUser, null, 2)}
+          </Text>
+          <Text style={{ color: 'red' }}>{this.state.isShowData && error && JSON.stringify(error, null, 2)}</Text>
         </View>
       </View>
     );
   }
 }
 const mapStateToProps = (state) => {
-  console.log('ss', state.apiData);
-  return { listUsers: state.apiData.listUsers };
-};
-const mapDispatchToProps = (dispatch) => {
   return {
-    GetListUsers: () => dispatch({ type: API.GET_LIST_USERS }),
-    GetSingleUser: () => dispatch({ type: API.GET_SINGLE_USER }),
-    GetSingleUserNotFound: () => dispatch({ type: API.GET_SINGLE_USER_NOT_FOUND }),
-    GetListResource: () => dispatch({ type: API.GET_LIST_RESOURCE }),
-    GetSingleResource: () => dispatch({ type: API.GET_SINGLE_RESOURCE }),
-    GetSingleResourceNotFound: () => dispatch({ type: API.GET_SINGLE_RESOURCE_NOT_FOUND }),
-    PostCreate: () => dispatch({ type: API.POST_CREATE }),
-    PutUpdate: () => dispatch({ type: API.PUT_UPDATE }),
-    PatchUpdate: () => dispatch({ type: API.PATCH_UPDATE }),
-    DeleteDelete: () => dispatch({ type: API.DELETE_DELETE }),
-    PostRegisterSuccessful: () => dispatch({ type: API.POST_REGISTER_SUCCESSFUL }),
-    PostRegisterUnSuccessful: () => dispatch({ type: API.POST_REGISTER_UNSUCCESSFUL }),
-    PostLoginSuccessful: () => dispatch({ type: API.POST_LOGIN_SUCCESSFUL }),
-    PostLoginUnSuccessful: () => dispatch({ type: API.POST_LOGIN_UNSUCCESSFUL }),
-    GetDelayedResponse: () => dispatch({ type: API.GET_DELAYED_RESPONSE }),
+    listUsers: state.apiListUsers.data,
+    loading: state.apiListUsers.loading,
+    error: state.apiListUsers.error,
+    singleUser: state.apiListUsers.singleUser,
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(APIScreen);
+
+export default connect(mapStateToProps, {
+  fetchGetListUsers,
+  fetchGetSingleUser,
+  fetchGetSingleUserNotFound,
+  fetchGetListResource,
+  fetchGetSingleResource,
+  fetchGetSingleResourceNotFound,
+  fetchGetDelayed,
+  fetchPostCreate,
+})(APIScreen);

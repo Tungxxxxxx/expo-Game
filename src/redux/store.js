@@ -5,7 +5,9 @@ import userLoginReducer from './reducers/userLoginReducer';
 import productReducer from './reducers/productReducer';
 import RatingReducer from './reducers/RatingReducer';
 import navigationReducer from './reducers/navigationReducer';
-import { apiReducer } from './reducers/apiReducer';
+import { ListUsersReducer } from './reducers/apiReducer';
+import { postReducer } from './reducers/postReducer';
+import middleware from './middleware/middleware';
 // Tạo reducer tổng
 const rootReducer = combineReducers({
   users: userReducer,
@@ -13,9 +15,13 @@ const rootReducer = combineReducers({
   products: productReducer,
   ratings: RatingReducer,
   navigation: navigationReducer,
-  apiData: apiReducer,
+  apiListUsers: ListUsersReducer,
+  postReducer: postReducer,
+
   //các reduecer khác nếu có
 });
 //Tạo store cho redux
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, middleware);
 export default store;
+
+//Sau đó kết nối với ứng dụng bằng cách thêm store vào App.js
