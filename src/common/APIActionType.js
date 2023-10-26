@@ -62,13 +62,21 @@ export const FETCH_POST_CREATE_REQUEST = 'FETCH_POST_CREATE_REQUEST';
 export const FETCH_POST_CREATE_SUCCESS = 'FETCH_POST_CREATE_SUCCESS';
 export const FETCH_POST_CREATE_FAILURE = 'FETCH_POST_CREATE_FAILURE';
 
+export const FETCH_PUT_UPDATE_REQUEST = 'FETCH_PUT_UPDATE_REQUEST';
+export const FETCH_PUT_UPDATE_SUCCESS = 'FETCH_PUT_UPDATE_SUCCESS';
+export const FETCH_PUT_UPDATE_FAILURE = 'FETCH_PUT_UPDATE_FAILURE';
+
+export const FETCH_PATCH_UPDATE_REQUEST = 'FETCH_PATCH_UPDATE_REQUEST';
+export const FETCH_PATCH_UPDATE_SUCCESS = 'FETCH_PATCH_UPDATE_SUCCESS';
+export const FETCH_PATCH_UPDATE_FAILURE = 'FETCH_PATCH_UPDATE_FAILURE';
+
 export const PATH_GET_LIST_USERS = 'https://reqres.in/api/users?page=2';
 export const PATH_GET_SINGLE_USER = 'https://reqres.in/api/users/2';
 export const PATH_GET_SINGLE_USER_NOT_FOUND = 'https://reqres.in/api/users/23';
 export const PATH_GET_LIST_RESOURCE = 'https://reqres.in/api/unknown';
 export const PATH_GET_SINGLE_RESOURCE = 'https://reqres.in/api/unknown/2';
 export const PATH_GET_SINGLE_RESOURCE_NOT_FOUND = 'https://reqres.in/api/unknown/23';
-export const PATH_POST_CREATE = 'https://reqres.in/api/users';
+export const PATH_POST_CREATE = 'https://reqres.in/apy/users';
 export const PATH_PUT_UPDATE = 'https://reqres.in/api/users/2';
 export const PATH_PATCH_UPDATE = 'https://reqres.in/api/users/2';
 export const PATH_DELETE_DELETE = 'https://reqres.in/api/users/2';

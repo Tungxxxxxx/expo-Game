@@ -5,6 +5,7 @@ const initState = {
   singleUser: {},
   loading: false,
   error: null,
+  type: null,
 };
 export const ListUsersReducer = (state = initState, action) => {
   console.log('action.type', action);
@@ -12,45 +13,45 @@ export const ListUsersReducer = (state = initState, action) => {
     case API.FETCH_GET_LIST_USERS_REQUEST:
       return { ...state, loading: true };
     case API.FETCH_GET_LIST_USERS_SUCCESS:
-      return { ...state, data: action.payload, loading: false, singleUser: {}, error: null };
+      return { ...state, data: action.payload, loading: false, singleUser: {}, error: null, type: action.type };
     case API.FETCH_GET_LIST_USERS_FAILURE:
-      return { ...state, loading: false, error: action.payload, singleUser: {}, data: [] };
+      return { ...state, loading: false, error: action.payload, singleUser: {}, data: [], type: action.type };
     case API.FETCH_GET_SINGLE_USER_REQUEST:
       return { ...state, loading: true };
     case API.FETCH_GET_SINGLE_USER_SUCCESS:
-      return { ...state, data: [], singleUser: action.payload, loading: false, error: null };
+      return { ...state, data: [], singleUser: action.payload, loading: false, error: null, type: action.type };
     case API.FETCH_GET_SINGLE_USER_FAILURE:
-      return { ...state, loading: false, error: action.payload, singleUser: {}, data: [] };
+      return { ...state, loading: false, error: action.payload, singleUser: {}, data: [], type: action.type };
     case API.FETCH_GET_SINGLE_USER_NOT_FOUND_REQUEST:
       return { ...state, loading: true };
     case API.FETCH_GET_SINGLE_USER_NOT_FOUND_SUCCESS:
-      return { ...state, data: [], singleUser: action.payload, loading: false, error: null };
+      return { ...state, data: [], singleUser: action.payload, loading: false, error: null, type: action.type };
     case API.FETCH_GET_SINGLE_USER_NOT_FOUND_FAILURE:
-      return { ...state, data: [], singleUser: {}, loading: false, error: action.payload };
+      return { ...state, data: [], singleUser: {}, loading: false, error: action.payload, type: action.type };
     case API.FETCH_GET_LIST_RESOURCE_REQUEST:
       return { ...state, loading: true };
     case API.FETCH_GET_LIST_RESOURCE_SUCCESS:
-      return { ...state, data: action.payload, singleUser: {}, loading: false, error: null };
+      return { ...state, data: action.payload, singleUser: {}, loading: false, error: null, type: action.type };
     case API.FETCH_GET_LIST_RESOURCE_FAILURE:
-      return { ...state, data: [], singleUser: {}, loading: false, error: action.payload };
+      return { ...state, data: [], singleUser: {}, loading: false, error: action.payload, type: action.type };
     case API.FETCH_GET_SINGLE_RESOURCE_REQUEST:
       return { ...state, loading: true };
     case API.FETCH_GET_SINGLE_RESOURCE_SUCCESS:
-      return { ...state, data: [], singleUser: action.payload, loading: false, error: null };
+      return { ...state, data: [], singleUser: action.payload, loading: false, error: null, type: action.type };
     case API.FETCH_GET_SINGLE_RESOURCE_FAILURE:
-      return { ...state, data: [], singleUser: {}, loading: false, error: action.payload };
+      return { ...state, data: [], singleUser: {}, loading: false, error: action.payload, type: action.type };
     case API.FETCH_GET_SINGLE_RESOURCE_NOTFOUND_REQUEST:
       return { ...state, loading: true };
     case API.FETCH_GET_SINGLE_RESOURCE_NOTFOUND_SUCCESS:
-      return { ...state, data: [], singleUser: action.payload, loading: false, error: null };
+      return { ...state, data: [], singleUser: action.payload, loading: false, error: null, type: action.type };
     case API.FETCH_GET_SINGLE_RESOURCE_NOTFOUND_FAILURE:
-      return { ...state, data: [], singleUser: {}, loading: false, error: action.payload };
+      return { ...state, data: [], singleUser: {}, loading: false, error: action.payload, type: action.type };
     case API.FETCH_GET_DELAYED_RESPONSE_REQUEST:
       return { ...state, loading: true };
     case API.FETCH_GET_DELAYED_RESPONSE_SUCCESS:
-      return { ...state, data: [], singleUser: action.payload, loading: false, error: null };
+      return { ...state, data: [], singleUser: action.payload, loading: false, error: null, type: action.type };
     case API.FETCH_GET_DELAYED_RESPONSE_FAILURE:
-      return { ...state, data: [], singleUser: {}, loading: false, error: action.payload };
+      return { ...state, data: [], singleUser: {}, loading: false, error: action.payload, type: action.type };
     default:
       return state;
   }

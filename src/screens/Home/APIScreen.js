@@ -11,8 +11,12 @@ import { fetchGetSingleResource } from '../../redux/action/getSingleResource';
 import { fetchGetSingleResourceNotFound } from '../../redux/action/getSingleResourceNotFound';
 import { fetchGetDelayed } from '../../redux/action/getDelayedResponse';
 import { fetchPostCreate } from '../../redux/action/postCreate';
+import { fetchPutUpdate } from '../../redux/action/putUpdate';
+import { fetchPatchUpdate } from '../../redux/action/patchUpdate';
 import Loading from '../../component/Loading';
 import { Divider } from 'react-native-paper';
+import { Linking } from 'react-native';
+import JSONTree from 'react-native-json-tree';
 class APIScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -21,6 +25,10 @@ class APIScreen extends React.Component {
       userPostCreate: {
         name: 'morpheus',
         job: 'leader',
+      },
+      userPutUpdate: {
+        name: 'morpheus',
+        job: 'zion resident',
       },
     };
   }
@@ -70,11 +78,13 @@ class APIScreen extends React.Component {
     this.setState({
       isShowData: true,
     });
+    this.props.fetchPutUpdate(JSON.stringify(this.state.userPutUpdate));
   };
   PatchUpdate = () => {
     this.setState({
       isShowData: true,
     });
+    this.props.fetchPatchUpdate(JSON.stringify(this.state.userPutUpdate));
   };
   DeleteDelete = () => {
     this.setState({
@@ -116,10 +126,31 @@ class APIScreen extends React.Component {
 
   componentDidMount() {}
   render() {
-    const { listUsers, singleUser, loading, error } = this.props;
-    console.log(loading);
+    const {
+      typeGet,
+      typePost,
+      listUsers,
+      singleUser,
+      loading,
+      error,
+      userCreate,
+      loadingPost,
+      errorCreate,
+      statusPost,
+      codePost,
+    } = this.props;
+    const beautify = require('json-beautify');
+    console.log('errorCreate', errorCreate);
     return (
       <View style={{ paddingTop: 30 }}>
+        <TouchableOpacity
+          onPress={() => {
+            Linking.openURL('https://reqres.in/');
+          }}
+          style={{ marginRight: 20 }}
+        >
+          <Text style={{ color: 'green' }}>API link</Text>
+        </TouchableOpacity>
         <View style={{ flexDirection: 'row' }}>
           <TouchableOpacity
             onPress={() => {
@@ -229,6 +260,7 @@ class APIScreen extends React.Component {
           <Text style={{ color: 'blue' }}>POST LOGIN UNSUCCESSFUL</Text>
         </TouchableOpacity>
         <TouchableOpacity
+          style={{ marginBottom: 20 }}
           onPress={() => {
             this.GetDelayedResponse();
           }}
@@ -236,10 +268,13 @@ class APIScreen extends React.Component {
           <Text style={{ color: 'blue' }}>GET DELAYED RESPONSE</Text>
         </TouchableOpacity>
 
-        {loading && <Loading />}
-        <Divider style={{ marginTop: 20, marginBottom: 20 }} />
-        <View style={{ backgroundColor: '#e1f0ff' }}>
+        {(loading || loadingPost) && <Loading />}
+        <Divider />
+        <View style={{ paddingTop: 20, backgroundColor: '#e1f0ff' }}>
           <Text style={{ fontWeight: 'bold', alignSelf: 'center', marginBottom: 10 }}>Kết quả</Text>
+          <Text style={{ fontWeight: 'bold', alignSelf: 'flex-start', marginBottom: 10 }}>
+            GET: <Text style={{ color: 'green' }}>{typeGet}</Text>
+          </Text>
           <Text>
             {this.state.isShowData && listUsers && listUsers.length > 0 && JSON.stringify(listUsers, null, 2)}
           </Text>
@@ -249,7 +284,27 @@ class APIScreen extends React.Component {
               Object.keys(singleUser).length > 0 &&
               JSON.stringify(singleUser, null, 2)}
           </Text>
-          <Text style={{ color: 'red' }}>{this.state.isShowData && error && JSON.stringify(error, null, 2)}</Text>
+          <Text style={{ color: 'red', marginBottom: 20 }}>
+            {this.state.isShowData && error && JSON.stringify(error, null, 2)}
+          </Text>
+          <Divider />
+          <Text style={{ marginTop: 20, fontWeight: 'bold', alignSelf: 'flex-start', marginBottom: 10 }}>
+            POST: <Text style={{ color: 'green' }}>{typePost}</Text>
+          </Text>
+          {this.state.isShowData && statusPost && <Text style={{ color: 'black' }}>status: {statusPost}</Text>}
+          {userCreate && Object.keys(userCreate).length > 0 && (
+            <>
+              <Text>{beautify(userCreate, null, 2, 100)}</Text>
+            </>
+          )}
+
+          {this.state.isShowData && errorCreate && (
+            <Text style={{ color: 'red' }}>error: {JSON.stringify(errorCreate, null, 2)} </Text>
+          )}
+
+          {this.state.isShowData && codePost && (
+            <Text style={{ color: 'red' }}>code: {JSON.stringify(codePost, null, 2)}</Text>
+          )}
         </View>
       </View>
     );
@@ -261,6 +316,13 @@ const mapStateToProps = (state) => {
     loading: state.apiListUsers.loading,
     error: state.apiListUsers.error,
     singleUser: state.apiListUsers.singleUser,
+    typeGet: state.apiListUsers.type,
+    userCreate: state.postReducer.userCreate,
+    errorCreate: state.postReducer.errorCreate,
+    loadingPost: state.postReducer.loadingPost,
+    statusPost: state.postReducer.statusPost,
+    codePost: state.postReducer.codePost,
+    typePost: state.postReducer.type,
   };
 };
 
@@ -273,4 +335,6 @@ export default connect(mapStateToProps, {
   fetchGetSingleResourceNotFound,
   fetchGetDelayed,
   fetchPostCreate,
+  fetchPutUpdate,
+  fetchPatchUpdate,
 })(APIScreen);
