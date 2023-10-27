@@ -27,9 +27,9 @@ export const postReducer = (state = initState, action) => {
         ...state,
         loadingPost: false,
         userCreate: null,
-        errorCreate: action.payload.error,
-        statusPost: action.payload.status,
-        codePost: action.payload.code,
+        errorCreate: action.payload,
+        statusPost: null,
+        codePost: null,
         type: action.type,
       };
     case API.FETCH_PUT_UPDATE_REQUEST:
@@ -49,9 +49,9 @@ export const postReducer = (state = initState, action) => {
         ...state,
         loadingPost: false,
         userCreate: null,
-        errorCreate: action.payload.error,
-        statusPost: action.payload.status,
-        codePost: action.payload.code,
+        errorCreate: action.payload,
+        statusPost: null,
+        codePost: null,
         type: action.type,
       };
     case API.FETCH_PATCH_UPDATE_REQUEST:
@@ -71,9 +71,119 @@ export const postReducer = (state = initState, action) => {
         ...state,
         loadingPost: false,
         userCreate: null,
-        errorCreate: action.payload.error,
+        errorCreate: action.payload,
+        statusPost: null,
+        codePost: null,
+        type: action.type,
+      };
+    case API.FETCH_DELETE_DELETE_REQUEST:
+      return { ...state, loadingPost: true };
+    case API.FETCH_DELETE_DELETE_SUCCESS:
+      return {
+        ...state,
+        loadingPost: false,
+        userCreate: action.payload.data,
+        errorCreate: null,
         statusPost: action.payload.status,
-        codePost: action.payload.code,
+        codePost: null,
+        type: action.type,
+      };
+    case API.FETCH_DELETE_DELETE_FAILURE:
+      return {
+        ...state,
+        loadingPost: false,
+        userCreate: null,
+        errorCreate: action.payload,
+        statusPost: null,
+        codePost: null,
+        type: action.type,
+      };
+    case API.FETCH_REGISTER_SUCCESSFUL_REQUEST:
+      return { ...state, loadingPost: true };
+    case API.FETCH_REGISTER_SUCCESSFUL_SUCCESS:
+      return {
+        ...state,
+        loadingPost: false,
+        userCreate: action.payload.data,
+        errorCreate: null,
+        statusPost: action.payload.status,
+        codePost: null,
+        type: action.type,
+      };
+    case API.FETCH_REGISTER_SUCCESSFUL_FAILURE:
+      return {
+        ...state,
+        loadingPost: false,
+        userCreate: null,
+        errorCreate: action.payload,
+        statusPost: null,
+        codePost: null,
+        type: action.type,
+      };
+    case API.FETCH_REGISTER_UNSUCCESSFUL_REQUEST:
+      return { ...state, loadingPost: true };
+    case API.FETCH_REGISTER_UNSUCCESSFUL_SUCCESS:
+      return {
+        ...state,
+        loadingPost: false,
+        userCreate: action.payload.data,
+        errorCreate: null,
+        statusPost: action.payload.status,
+        codePost: null,
+        type: action.type,
+      };
+    case API.FETCH_REGISTER_UNSUCCESSFUL_FAILURE:
+      return {
+        ...state,
+        loadingPost: false,
+        userCreate: null,
+        errorCreate: action.payload,
+        statusPost: null,
+        codePost: null,
+        type: action.type,
+      };
+    case API.FETCH_POST_LOGIN_SUCCESSFUL_REQUEST:
+      return { ...state, loadingPost: true };
+    case API.FETCH_POST_LOGIN_SUCCESSFUL_SUCCESS:
+      return {
+        ...state,
+        loadingPost: false,
+        userCreate: action.payload.data,
+        errorCreate: null,
+        statusPost: action.payload.status,
+        codePost: null,
+        type: action.type,
+      };
+    case API.FETCH_POST_LOGIN_SUCCESSFUL_FAILURE:
+      return {
+        ...state,
+        loadingPost: false,
+        userCreate: null,
+        errorCreate: action.payload,
+        statusPost: null,
+        codePost: null,
+        type: action.type,
+      };
+    case API.FETCH_POST_LOGIN_UNSUCCESSFUL_REQUEST:
+      return { ...state, loadingPost: true };
+    case API.FETCH_POST_LOGIN_UNSUCCESSFUL_SUCCESS:
+      return {
+        ...state,
+        loadingPost: false,
+        userCreate: action.payload.data,
+        errorCreate: null,
+        statusPost: action.payload.status,
+        codePost: null,
+        type: action.type,
+      };
+    case API.FETCH_POST_LOGIN_UNSUCCESSFUL_FAILURE:
+      return {
+        ...state,
+        loadingPost: false,
+        userCreate: null,
+        errorCreate: action.payload,
+        statusPost: null,
+        codePost: null,
         type: action.type,
       };
 

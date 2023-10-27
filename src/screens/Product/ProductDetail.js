@@ -6,8 +6,6 @@ import { Divider } from 'react-native-paper';
 import Ratings from './Ratings';
 import { Dimensions } from 'react-native';
 import BottomBar from '../../component/BottomBar';
-import ProductDetailHeader from '../../component/ProductDetailHeader';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Icon } from '@rneui/themed';
 import { connect } from 'react-redux';

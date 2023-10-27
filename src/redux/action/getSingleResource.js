@@ -6,16 +6,16 @@ const fetchGetSingleResourceRequest = () => {
     type: API.FETCH_GET_SINGLE_RESOURCE_REQUEST,
   };
 };
-const fetchGetSingleResourceSuccess = (data) => {
+const fetchGetSingleResourceSuccess = (data, status) => {
   return {
     type: API.FETCH_GET_SINGLE_RESOURCE_SUCCESS,
-    payload: data,
+    payload: { data: data, status: status },
   };
 };
-const fetchGetSingleResourceFailure = (error) => {
+const fetchGetSingleResourceFailure = (error, status, code) => {
   return {
     type: API.FETCH_GET_SINGLE_RESOURCE_FAILURE,
-    payload: error,
+    payload: { error: error, status: status, code: code },
   };
 };
 
@@ -24,9 +24,9 @@ export const fetchGetSingleResource = () => {
     dispatch(fetchGetSingleResourceRequest());
     try {
       const res = await axios.get(API.PATH_GET_SINGLE_RESOURCE);
-      dispatch(fetchGetSingleResourceSuccess(res.data.data));
+      dispatch(fetchGetSingleResourceSuccess(res.data.data, res.status));
     } catch (error) {
-      dispatch(fetchGetSingleResourceFailure(error.message));
+      dispatch(fetchGetSingleResourceFailure(error.message, error.request.status, error.code));
     }
   };
 };

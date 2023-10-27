@@ -5,7 +5,7 @@ import userLoginReducer from './reducers/userLoginReducer';
 import productReducer from './reducers/productReducer';
 import RatingReducer from './reducers/RatingReducer';
 import navigationReducer from './reducers/navigationReducer';
-import { ListUsersReducer } from './reducers/apiReducer';
+import { apiGetReducer } from './reducers/apiGetReducer';
 import { postReducer } from './reducers/postReducer';
 import middleware from './middleware/middleware';
 // Tạo reducer tổng
@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
   products: productReducer,
   ratings: RatingReducer,
   navigation: navigationReducer,
-  apiListUsers: ListUsersReducer,
+  apiGetReducer: apiGetReducer,
   postReducer: postReducer,
 
   //các reduecer khác nếu có

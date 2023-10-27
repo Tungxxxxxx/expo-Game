@@ -13,114 +13,144 @@ import { fetchGetDelayed } from '../../redux/action/getDelayedResponse';
 import { fetchPostCreate } from '../../redux/action/postCreate';
 import { fetchPutUpdate } from '../../redux/action/putUpdate';
 import { fetchPatchUpdate } from '../../redux/action/patchUpdate';
+import { fetchDeleteDelete } from '../../redux/action/deleteDelete';
+import { fetchRegisterSuccessful } from '../../redux/action/registerSuccessful';
+import { fetchRegisterUnSuccessful } from '../../redux/action/registerUnSuccessful';
+import { fetchPostLoginSuccessful } from '../../redux/action/postLoginSuccessful';
+import { fetchPostLoginUnSuccessful } from '../../redux/action/postLoginUnSuccessful';
 import Loading from '../../component/Loading';
 import { Divider } from 'react-native-paper';
 import { Linking } from 'react-native';
-import JSONTree from 'react-native-json-tree';
 class APIScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isShowData: false,
+      isShowDataGet: false,
+      isShowDataPostPutPatchDelete: false,
       userPostCreate: {
         name: 'morpheus',
         job: 'leader',
       },
       userPutUpdate: {
-        name: 'morpheus',
-        job: 'zion resident',
+        name: 'Phạm Thanh Tùng',
+        job: 'CNTT',
+      },
+      registerSuccessful: {
+        email: 'eve.holt@reqres.in',
+        password: 'pistol',
+      },
+      registerUnSuccessful: {
+        email: 'sydney@fife',
+      },
+      postLoginSuccessful: {
+        email: 'eve.holt@reqres.in',
+        password: 'cityslicka',
+      },
+      postLoginUnSuccessful: {
+        email: 'peter@klaven',
       },
     };
   }
-  GetListUsers = () => {
+  GetListUsers = async () => {
+    await this.props.fetchGetListUsers();
     this.setState({
-      isShowData: true,
-    });
-    this.props.fetchGetListUsers();
-  };
-  GetSingleUser = () => {
-    this.setState({
-      isShowData: true,
-    });
-    this.props.fetchGetSingleUser();
-  };
-  GetSingleUserNotFound = () => {
-    this.setState({
-      isShowData: true,
-    });
-    this.props.fetchGetSingleUserNotFound();
-  };
-  GetListResource = () => {
-    this.setState({
-      isShowData: true,
-    });
-    this.props.fetchGetListResource();
-  };
-  GetSingleResource = () => {
-    this.setState({
-      isShowData: true,
-    });
-    this.props.fetchGetSingleResource();
-  };
-  GetSingleResourceNotFound = () => {
-    this.setState({
-      isShowData: true,
-    });
-    this.props.fetchGetSingleResourceNotFound();
-  };
-  PostCreate = () => {
-    this.setState({
-      isShowData: true,
-    });
-    this.props.fetchPostCreate(JSON.stringify(this.state.userPostCreate));
-  };
-  PutUpdate = () => {
-    this.setState({
-      isShowData: true,
-    });
-    this.props.fetchPutUpdate(JSON.stringify(this.state.userPutUpdate));
-  };
-  PatchUpdate = () => {
-    this.setState({
-      isShowData: true,
-    });
-    this.props.fetchPatchUpdate(JSON.stringify(this.state.userPutUpdate));
-  };
-  DeleteDelete = () => {
-    this.setState({
-      isShowData: true,
+      isShowDataGet: true,
     });
   };
-  PostRegisterSuccessful = () => {
+  GetSingleUser = async () => {
+    await this.props.fetchGetSingleUser();
     this.setState({
-      isShowData: true,
+      isShowDataGet: true,
     });
   };
-  PostRegisterUnSuccessful = () => {
+  GetSingleUserNotFound = async () => {
+    await this.props.fetchGetSingleUserNotFound();
     this.setState({
-      isShowData: true,
+      isShowDataGet: true,
     });
   };
-  PostLoginSuccessful = () => {
+  GetListResource = async () => {
+    await this.props.fetchGetListResource();
     this.setState({
-      isShowData: true,
+      isShowDataGet: true,
     });
   };
-  PostLoginUnSuccessful = () => {
+  GetSingleResource = async () => {
+    await this.props.fetchGetSingleResource();
     this.setState({
-      isShowData: true,
+      isShowDataGet: true,
     });
   };
-  GetDelayedResponse = () => {
+  GetSingleResourceNotFound = async () => {
+    await this.props.fetchGetSingleResourceNotFound();
     this.setState({
-      isShowData: true,
+      isShowDataGet: true,
     });
-    this.props.fetchGetDelayed();
+  };
+  PostCreate = async () => {
+    await this.props.fetchPostCreate(JSON.stringify(this.state.userPostCreate));
+    this.setState({
+      isShowDataPostPutPatchDelete: true,
+    });
+  };
+  PutUpdate = async () => {
+    await this.props.fetchPutUpdate(JSON.stringify(this.state.userPutUpdate));
+    this.setState({
+      isShowDataPostPutPatchDelete: true,
+    });
+  };
+  PatchUpdate = async () => {
+    await this.props.fetchPatchUpdate(this.state.userPutUpdate);
+    this.setState({
+      isShowDataPostPutPatchDelete: true,
+    });
+  };
+  DeleteDelete = async () => {
+    await this.props.fetchDeleteDelete();
+    this.setState({
+      isShowDataPostPutPatchDelete: true,
+    });
+  };
+  PostRegisterSuccessful = async () => {
+    await this.props.fetchRegisterSuccessful(this.state.registerSuccessful);
+    this.setState({
+      isShowDataPostPutPatchDelete: true,
+    });
+  };
+  PostRegisterUnSuccessful = async () => {
+    await this.props.fetchRegisterUnSuccessful(this.state.registerUnSuccessful);
+    this.setState({
+      isShowDataPostPutPatchDelete: true,
+    });
+  };
+  PostLoginSuccessful = async () => {
+    await this.props.fetchPostLoginSuccessful(this.state.postLoginSuccessful);
+    this.setState({
+      isShowDataPostPutPatchDelete: true,
+    });
+  };
+  PostLoginUnSuccessful = async () => {
+    await this.props.fetchPostLoginUnSuccessful(this.state.postLoginUnSuccessful);
+    this.setState({
+      isShowDataPostPutPatchDelete: true,
+    });
+  };
+  //this.props.fetchGetDelayed và this.setState là 2 hàm bất đồng bộ = > Dùng async, await để đợi lấy data xong rồi mới setState => tránh hiện tượng show lại kết quả cũ
+  GetDelayedResponse = async () => {
+    await this.props.fetchGetDelayed();
+    this.setState({
+      isShowDataGet: true,
+    });
   };
   //Ẩn
   HideGetListUsers = () => {
     this.setState({
-      isShowData: false,
+      isShowDataGet: false,
+    });
+  };
+  HideDataPostPutPatchDelete = () => {
+    this.setState({
+      isShowDataPostPutPatchDelete: false,
     });
   };
 
@@ -138,11 +168,30 @@ class APIScreen extends React.Component {
       errorCreate,
       statusPost,
       codePost,
+      statusGet,
+      codeGet,
     } = this.props;
     const beautify = require('json-beautify');
     console.log('errorCreate', errorCreate);
     return (
       <View style={{ paddingTop: 30 }}>
+        <View style={{ flexDirection: 'row' }}>
+          <TouchableOpacity
+            onPress={() => {
+              this.HideGetListUsers();
+            }}
+          >
+            <Text style={{ color: 'blue' }}>Ẩn Get</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              this.HideDataPostPutPatchDelete();
+            }}
+            style={{ marginLeft: 50 }}
+          >
+            <Text style={{ color: 'blue' }}>Ẩn Post Put Patch Delete</Text>
+          </TouchableOpacity>
+        </View>
         <TouchableOpacity
           onPress={() => {
             Linking.openURL('https://reqres.in/');
@@ -151,23 +200,14 @@ class APIScreen extends React.Component {
         >
           <Text style={{ color: 'green' }}>API link</Text>
         </TouchableOpacity>
-        <View style={{ flexDirection: 'row' }}>
-          <TouchableOpacity
-            onPress={() => {
-              this.GetListUsers();
-            }}
-            style={{ marginRight: 20 }}
-          >
-            <Text style={{ color: 'blue' }}>GET LIST USERS</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              this.HideGetListUsers();
-            }}
-          >
-            <Text style={{ color: 'blue' }}>Ẩn</Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+          onPress={() => {
+            this.GetListUsers();
+          }}
+          style={{ marginRight: 20 }}
+        >
+          <Text style={{ color: 'blue' }}>GET LIST USERS</Text>
+        </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
             this.GetSingleUser();
@@ -202,14 +242,14 @@ class APIScreen extends React.Component {
           }}
         >
           <Text style={{ color: 'blue' }}>GET SINGLE &#60;RESOURCE&#62; NOT FOUND</Text>
-        </TouchableOpacity>
+        </TouchableOpacity>{' '}
         <TouchableOpacity
           onPress={() => {
             this.PostCreate();
           }}
         >
           <Text style={{ color: 'blue' }}>POST CREATE</Text>
-        </TouchableOpacity>
+        </TouchableOpacity>{' '}
         <TouchableOpacity
           onPress={() => {
             this.PutUpdate();
@@ -267,7 +307,6 @@ class APIScreen extends React.Component {
         >
           <Text style={{ color: 'blue' }}>GET DELAYED RESPONSE</Text>
         </TouchableOpacity>
-
         {(loading || loadingPost) && <Loading />}
         <Divider />
         <View style={{ paddingTop: 20, backgroundColor: '#e1f0ff' }}>
@@ -275,34 +314,40 @@ class APIScreen extends React.Component {
           <Text style={{ fontWeight: 'bold', alignSelf: 'flex-start', marginBottom: 10 }}>
             GET: <Text style={{ color: 'green' }}>{typeGet}</Text>
           </Text>
+          {this.state.isShowDataGet && statusGet && <Text style={{ color: 'black' }}>status: {statusGet}</Text>}
           <Text>
-            {this.state.isShowData && listUsers && listUsers.length > 0 && JSON.stringify(listUsers, null, 2)}
+            {this.state.isShowDataGet && listUsers && listUsers.length > 0 && JSON.stringify(listUsers, null, 2)}
           </Text>
           <Text>
-            {this.state.isShowData &&
+            {this.state.isShowDataGet &&
               singleUser &&
               Object.keys(singleUser).length > 0 &&
               JSON.stringify(singleUser, null, 2)}
           </Text>
           <Text style={{ color: 'red', marginBottom: 20 }}>
-            {this.state.isShowData && error && JSON.stringify(error, null, 2)}
+            {this.state.isShowDataGet && error && JSON.stringify(error, null, 2)}
           </Text>
+          {this.state.isShowDataGet && codeGet && (
+            <Text style={{ color: 'red' }}>code: {JSON.stringify(codeGet, null, 2)}</Text>
+          )}
           <Divider />
           <Text style={{ marginTop: 20, fontWeight: 'bold', alignSelf: 'flex-start', marginBottom: 10 }}>
-            POST: <Text style={{ color: 'green' }}>{typePost}</Text>
+            Action: <Text style={{ color: 'green' }}>{typePost}</Text>
           </Text>
-          {this.state.isShowData && statusPost && <Text style={{ color: 'black' }}>status: {statusPost}</Text>}
+          {this.state.isShowDataPostPutPatchDelete && statusPost && (
+            <Text style={{ color: 'black' }}>status: {statusPost}</Text>
+          )}
           {userCreate && Object.keys(userCreate).length > 0 && (
             <>
               <Text>{beautify(userCreate, null, 2, 100)}</Text>
             </>
           )}
 
-          {this.state.isShowData && errorCreate && (
-            <Text style={{ color: 'red' }}>error: {JSON.stringify(errorCreate, null, 2)} </Text>
+          {this.state.isShowDataPostPutPatchDelete && errorCreate && (
+            <Text style={{ color: 'red' }}>{JSON.stringify(errorCreate, null, 2)} </Text>
           )}
 
-          {this.state.isShowData && codePost && (
+          {this.state.isShowDataPostPutPatchDelete && codePost && (
             <Text style={{ color: 'red' }}>code: {JSON.stringify(codePost, null, 2)}</Text>
           )}
         </View>
@@ -312,17 +357,19 @@ class APIScreen extends React.Component {
 }
 const mapStateToProps = (state) => {
   return {
-    listUsers: state.apiListUsers.data,
-    loading: state.apiListUsers.loading,
-    error: state.apiListUsers.error,
-    singleUser: state.apiListUsers.singleUser,
-    typeGet: state.apiListUsers.type,
+    listUsers: state.apiGetReducer.data,
+    loading: state.apiGetReducer.loading,
+    error: state.apiGetReducer.error,
+    singleUser: state.apiGetReducer.singleUser,
+    typeGet: state.apiGetReducer.type,
     userCreate: state.postReducer.userCreate,
     errorCreate: state.postReducer.errorCreate,
     loadingPost: state.postReducer.loadingPost,
     statusPost: state.postReducer.statusPost,
     codePost: state.postReducer.codePost,
     typePost: state.postReducer.type,
+    statusGet: state.apiGetReducer.status,
+    codeGet: state.apiGetReducer.code,
   };
 };
 
@@ -337,4 +384,9 @@ export default connect(mapStateToProps, {
   fetchPostCreate,
   fetchPutUpdate,
   fetchPatchUpdate,
+  fetchDeleteDelete,
+  fetchRegisterSuccessful,
+  fetchRegisterUnSuccessful,
+  fetchPostLoginSuccessful,
+  fetchPostLoginUnSuccessful,
 })(APIScreen);

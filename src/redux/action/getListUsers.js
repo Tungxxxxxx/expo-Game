@@ -1,16 +1,16 @@
 import axios from 'axios';
 import * as API from '../../common/APIActionType';
 // Khai báo các action, trả về 1 đối tượng
-const fetchGetListUsersSuccess = (data) => ({
-  type: API.FETCH_GET_LIST_USERS_SUCCESS,
-  payload: data,
-});
 const fetchGetListUsersRequest = () => ({
   type: API.FETCH_GET_LIST_USERS_REQUEST,
 });
-const fetchGetListUsersFailure = (error) => ({
+const fetchGetListUsersSuccess = (data, status) => ({
+  type: API.FETCH_GET_LIST_USERS_SUCCESS,
+  payload: { data: data, status: status },
+});
+const fetchGetListUsersFailure = (error, status, code) => ({
   type: API.FETCH_GET_LIST_USERS_FAILURE,
-  payload: error,
+  payload: { error: error, status: status, code: code },
 });
 
 // dispatch các action, trả về 1 dispatch
@@ -24,9 +24,9 @@ export const fetchGetListUsers = () => {
       //Lấy data
       const res = await axios.get(API.PATH_GET_LIST_USERS);
       // dispatch(fetchGetListUsersSuccess(res.data.data));
-      setTimeout(() => dispatch(fetchGetListUsersSuccess(res.data.data)), 1000);
+      dispatch(fetchGetListUsersSuccess(res.data.data, res.status));
     } catch (error) {
-      dispatch(fetchGetListUsersFailure(error.message));
+      dispatch(fetchGetListUsersFailure(error.message, error.request.status, error.code));
     }
   };
 };

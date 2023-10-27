@@ -23,7 +23,8 @@ export const fetchPutUpdate = (dataInput) => {
   return async (dispatch) => {
     dispatch(fetchPutUpdateRequest());
     try {
-      const res = await axios.post(API.PATH_PUT_UPDATE, dataInput);
+      const res = await axios.put(API.PATH_PUT_UPDATE, dataInput);
+      console.log('putUpdate:', res);
       dispatch(fetchPutUpdateSuccess(res.data, res.status));
     } catch (error) {
       dispatch(fetchPutUpdateFailure(error.message, error.request.status, error.code));

@@ -2,13 +2,13 @@ import axios from 'axios';
 import * as API from '../../common/APIActionType';
 
 const fetchGetSingleResourceNotFoundRequest = () => ({ type: API.FETCH_GET_SINGLE_RESOURCE_NOTFOUND_REQUEST });
-const fetchGetSingleResourceNotFoundSuccess = (data) => ({
+const fetchGetSingleResourceNotFoundSuccess = (data, status) => ({
   type: API.FETCH_GET_SINGLE_RESOURCE_NOTFOUND_SUCCESS,
-  payload: data,
+  payload: { data: data, status: status },
 });
-const fetchGetSingleResourceNotFoundFailure = (error) => ({
+const fetchGetSingleResourceNotFoundFailure = (error, status, code) => ({
   type: API.FETCH_GET_SINGLE_RESOURCE_NOTFOUND_FAILURE,
-  payload: error,
+  payload: { error: error, status: status, code: code },
 });
 
 export const fetchGetSingleResourceNotFound = () => {
@@ -16,9 +16,9 @@ export const fetchGetSingleResourceNotFound = () => {
     dispatch(fetchGetSingleResourceNotFoundRequest());
     try {
       const res = await axios.get(API.PATH_GET_SINGLE_RESOURCE_NOT_FOUND);
-      dispatch(fetchGetSingleResourceNotFoundSuccess(res.data.data));
+      dispatch(fetchGetSingleResourceNotFoundSuccess(res.data.data, res.status));
     } catch (error) {
-      dispatch(fetchGetSingleResourceNotFoundFailure(error.message));
+      dispatch(fetchGetSingleResourceNotFoundFailure(error.message, error.request.status, error.code));
     }
   };
 };
